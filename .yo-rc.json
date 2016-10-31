@@ -1,0 +1,82 @@
+{
+  "generator-ng-appgen": {
+    "uirouter": true,
+    "templateDirectory": "templates/",
+    "directiveDirectory": "directives/",
+    "filterDirectory": "filters/",
+    "serviceDirectory": "services/",
+    "controllerDirectory": "controllers/",
+    "modalDirectory": "modals/",
+    "inject": {
+      "js": {
+        "file": "app/index.html",
+        "marker": "<!-- Add New Component JS Above -->",
+        "template": "<script src=\"<%= filename %>\"></script>"
+      },
+      "less": {
+        "relativeToModule": true,
+        "file": "<%= module %>.less",
+        "marker": "/* Add Component LESS Above */",
+        "template": "@import \"<%= filename %>\";"
+      }
+    },
+    "modules": [
+      {
+        "name": "home",
+        "file": "app\\home\\home.js"
+      },
+      {
+        "name": "help",
+        "file": "app\\help\\help.js"
+      },
+      {
+        "name": "common",
+        "file": "app\\common\\common.js"
+      },
+      {
+        "name": "administration",
+        "file": "app\\administration\\administration.js"
+      },
+      {
+        "name": "dashboard",
+        "file": "app\\undefined\\dashboard.js"
+      },
+      {
+        "name": "administration",
+        "file": "app\\administration\\administration.js"
+      },
+      {
+        "name": "dashboard",
+        "file": "app\\administration\\dashboard\\dashboard.js"
+      },
+      {
+        "name": "dash",
+        "file": "app\\undefined\\dash.js"
+      },
+      {
+        "name": "category",
+        "file": "app\\administration\\dashboard\\category.js"
+      },
+      {
+        "name": "administration",
+        "file": "app\\administration\\administration.js"
+      },
+      {
+        "name": "dashboard",
+        "file": "app\\administration\\dashboard\\dashboard.js"
+      },
+      {
+        "name": "products",
+        "file": "app\\administration\\dashboard\\templates\\products.js"
+      },
+      {
+        "name": "products",
+        "file": "app\\products\\products.js"
+      },
+      {
+        "name": "products",
+        "file": "app\\administration\\dashboard\\templates\\products\\products.js"
+      }
+    ]
+  }
+}

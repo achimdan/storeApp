@@ -1,0 +1,153 @@
+/* Component LESS */
+@import "dashboard/templates/dash/dashboard.less";
+@import "dashboard/templates/categories/categories.less";
+@import "dashboard/templates/add-category/add-category.less";
+@import "dashboard/templates/products/products.less";
+@import "dashboard/templates/products/products.less";
+@import "dashboard/templates/add-product/add-product.less";
+/* Add Component LESS Above */
+
+@dashBlue : #1976d2;
+@inputBlue : #a2a2a2;
+
+.container {
+	width: 100%;
+}
+
+.header-container {
+    background-color: @dashBlue;
+    color: white;
+    .logo-text {
+    	padding: 15px 0;
+    	display: block;
+    	font-size: 20px;
+    }
+}
+.logo-icon {
+	font-size: 28px;
+}
+
+.sidebar-container {
+	width: 240px;
+    position: absolute;
+    top: 64px;
+    height: 100%;
+    .nav-store {
+    	li a {
+			text-align: left;
+			padding: 5px 15px !important;
+    	}
+    }
+}
+
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+	border-radius: 2px;
+	margin: 0;
+	&:focus {
+		box-shadow: none;
+	    border-color: @inputBlue;
+	};
+}
+
+// .form-control {
+// 	border-radius: 2px;
+// 	box-shadow: rgb(212, 212, 212) 0px 1px 1px 1px;
+//     border: 0px;
+//     border-radius: 0px;
+//     height: 42px;
+// 	-webkit-transition: width 2s;
+// 	transition: width 2s;
+// 	margin: 0;
+// 	&:focus {
+// 		box-shadow: #a2a2a2 0px 1px 1px 1px;
+// 	    border-color: @inputBlue;
+// 	};
+// }
+
+.main-container {
+	margin-left: 240px;
+	background: #f1f2f3;
+    height: 100%;
+    padding: 20px;
+    .breadcrumbs {
+    	.breadcrumb {
+		    background-color: #ffffff;
+    		border-radius: 0;
+    		padding: 10px 15px;
+		    border: 1px solid rgba(0, 0, 0, 0.12);
+    	}
+    }
+    .inner-box {
+	    background-color: #fff;
+    	color: #4F5256;
+    	border: 1px solid rgba(0,0,0,.12);
+    	padding: 15px;
+    	.md-padding {
+		    padding-top: 50px;
+    	}
+    	.content-md {
+    		background: white;
+    	}
+    }
+}
+
+// Material classes tables
+
+.main-table-small {
+	.md-row {
+		th.md-column:nth-child(2) {
+			width: 10%;
+			.md-cell.md-numeric {
+			text-align: left !important;
+				
+			}
+		}
+	}
+}
+
+// Material classes buttons
+.custom-btn {
+	background: @dashBlue !important;
+	.fa {
+		font-size: 17px;
+	}
+}
+
+
+.md-hue-2 {
+	background: @dashBlue !important;
+	.md-toolbar-tools .md-button {
+		color: white;
+	}
+}
+.md-button {
+	margin: 0;
+	text-transform: initial;
+	border-radius: 0;
+    color: #6C7177;
+	font-weight: bold;
+	.fa {
+		height: 17px;
+	    width: 17px;
+	    min-height: 17px;
+	    min-width: 17px;
+	}
+}
+
+.primary.md-fab {
+    background-color: @dashBlue !important;
+}
+
+.isDisabled {
+    background: red !important;
+}

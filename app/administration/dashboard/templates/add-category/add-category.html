@@ -1,0 +1,135 @@
+<div class="inner-box">
+    <form class="form-horizontal" name="addCategoryForm" ng-submit="sendPost(formData)" novalidate>
+	    <div class="row">
+		    <div class="col-md-6">
+				<h3>Add Category</h3>
+			</div>
+			<div class="col-md-6">
+				<div class="pull-right">
+			        <md-button 
+			        		class="md-fab md-primary md-mini custom-btn" 
+			        		aria-label="Add category" 
+			        		type="submit" 
+			        		ng-class="{isDisabled: addCategoryForm.$invalid}"
+			        		ng-disabled="addCategoryForm.$invalid">
+					    <md-tooltip md-direction="top">
+				          	Save
+				        </md-tooltip>
+			          	<md-icon class="fa fa-floppy-o"></md-icon>
+			        </md-button>
+			        <md-button 
+			        		class="md-fab md-primary md-mini custom-btn" 
+	        				aria-label="Add category" 
+        					ui-sref="dashboard.categories">
+					    <md-tooltip md-direction="top">
+				          	Cancel
+				        </md-tooltip>
+			          	<md-icon class="fa fa-angle-double-left"></md-icon>
+			        </md-button>
+				</div>
+			</div>
+		</div>
+	    <md-content>
+	        <md-tabs md-dynamic-height md-border-bottom  class="content-md">
+	            <md-tab label="General">
+	                <md-content class="md-padding content-md">
+                        <div class="form-group">
+                            <label for="categoryName" class="col-sm-2 control-label">		
+								Category Name
+                            </label>
+                            <div class="col-sm-10">
+                                <input 
+                                		type="text" 
+                                		class="form-control" 
+                                		id="categoryName" 
+                                		placeholder="Category Name"
+                                		ng-model="formData.name"
+                                		required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">
+                            	Description
+                        	</label>
+                            <div class="col-sm-10">
+                                <textarea 
+                            			class="form-control" 
+                            			rows="5" 
+                            			ng-model="formData.description"
+                            			id="description">
+                    			</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">
+                            	Parent
+                            </label>
+                            <div class="col-sm-10">
+                        		<md-autocomplete 
+	                        		md-selected-item="formData.parentCategoryId" 
+	                        		md-search-text="searchText" 
+	                        		md-items="item in getMatches(searchText)" 
+	                        		md-item-text="item.name" 
+	                        		md-min-length="0" 
+	                        		placeholder="Type something">
+								        <md-item-template> 
+									        <span md-highlight-text="searchText">
+									        	{{item.name}}
+									        </span>
+								        </md-item-template>
+								        <md-not-found>
+								        	No matches found.
+							        	</md-not-found>
+							    </md-autocomplete>
+                            </div>
+                        </div>
+	                </md-content>
+	            </md-tab>
+	            <md-tab label="SEO">
+	                <md-content class="md-padding content-md">
+	                    <div class="form-group">
+                            <label for="metaTitle" class="col-sm-2 control-label">Meta Tag Title</label>
+                            <div class="col-sm-10">
+                                <input 
+                                		type="text" 
+                                		class="form-control" 
+                                		id="metaTitle" 
+                                		placeholder="Meta Tag Title" 
+                                		ng-model="formData.metaTitle"
+                                		required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="metaDescription" class="col-sm-2 control-label">Meta Tag Description</label>
+                            <div class="col-sm-10">
+                                <textarea 
+                                		class="form-control" 
+                                		rows="5"
+                                		ng-model="formData.metaDescription"
+                                		id="metaDescription">
+                        		</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="metaKeywords" class="col-sm-2 control-label">Meta Tag Keywords</label>
+                            <div class="col-sm-10">
+                                <textarea 
+                                		class="form-control" 
+                                		rows="5" 
+                                		ng-model="formData.metaKeywords"
+                                		id="metaKeywords">
+                        		</textarea>
+                            </div>
+                        </div>
+	                </md-content>
+	            </md-tab>
+	            <md-tab label="Design">
+	                <md-content class="md-padding content-md">
+	                    <h1 class="md-display-2">Tab Three</h1>
+	                    <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+	                </md-content>
+	            </md-tab>
+	        </md-tabs>
+	    </md-content>
+	</form>
+</div>
