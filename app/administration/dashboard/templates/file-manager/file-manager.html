@@ -1,0 +1,17 @@
+<div class="container">
+
+    <h2>Sample FileManager page!</h2>
+
+    <ul>
+        <li ng-repeat="file in files" ng-click="loadFolder(file)">
+            {{file.folder}} <br>
+            {{file.name}}  <br> 
+            <img ng-src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt="">
+        </li>
+    </ul>    
+
+    <md-button id="btn-cancel" ng-click="parentDirectory()" class="md-accent">Back</md-button>
+    <md-button id="btn-save" ng-click="save()" class="md-primary">Save</md-button>
+    <md-button id="btn-cancel" ng-click="cancel()" class="md-accent">Cancel</md-button>
+
+</div>

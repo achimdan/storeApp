@@ -1,4 +1,3 @@
-
 (function(){
     'use strict';
 
@@ -52,6 +51,16 @@
                 // parent: 'products'
             }
         });
+
+        $stateProvider.state('dashboard.file-manager', {
+            url: '/file-manager',
+            templateUrl: 'administration/dashboard/templates/file-manager/file-manager.html',
+            controller: 'FileManagerController',
+            ncyBreadcrumb: {
+                label: 'Products / Add Product'
+                // parent: 'products'
+            }
+		});
 
     });
     
