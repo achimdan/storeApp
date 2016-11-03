@@ -8,21 +8,25 @@
      * @author: Achim Dan
      */
     angular.module('administration')
-    .controller('FileManagerController', function($scope, $mdDialog, $http) {
+    .controller('FileManagerController', function($scope, $mdDialog, $http, fileManagerService) {
         
         // fileManagerService.fetchFiles();
         // $scope.cb = {
         //     getFiles : fileManagerService.getFiles
         // };
+        
 
         var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',
             urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder',
-            urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory';
+            urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory',
+            urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory';
 
 
         var successCallback =  function (success) {
           	$scope.files = success.data.files;
           	$scope.thePath = success.data;
+            console.log('successCallback',success);
+
         };
 
         var errorCallback =  function (error) {
@@ -37,6 +41,15 @@
 
         var errorNavigate =  function (error) {
 			console.log('errorNavigate',error);
+        };
+
+        var successDelete =  function (success) {
+          	get();
+            
+        };
+
+        var errorDelete =  function (error) {
+			console.log('errorDelete',error);
         };
         
         var get = function () {
@@ -71,11 +84,33 @@
 
         $scope.save = function() {
             $mdDialog.hide();
-        }
+        };
         $scope.cancel = function() {
             $mdDialog.cancel();
-        }
+        };
 
+        $scope.delete = function(file,path) {
+            console.log(file);
+            var data = {
+                fileName: file.name,
+                path: $scope.thePath.path
+            };
+            $http.post(urlDelete,data).then(successDelete,errorDelete);
+            
+        };
+
+})
+
+.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
 });
 
 })();

@@ -20,7 +20,10 @@
             };
 
         var successCallback = function (success) {
-            console.log(success);
+            console.log('==============',success.data.files);
+            files.fetching = false;
+            files.loaded = true;
+            files.data = success.data.files;
         };
         var errorCallback = function (error) {
             console.log(error);
@@ -32,8 +35,19 @@
         };
 
         factory.getFiles = function () {
-            return files.data;
+            return files.data.files;
         };
+
+        factory.init = function () {
+            files = {
+                loaded: false,
+                fetching: false,
+                data: {}
+            };
+
+        };
+
+        return factory;
 
     });
 

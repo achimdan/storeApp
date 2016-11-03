@@ -13,8 +13,10 @@
         var factory = {};
 
         factory.fetchFiles = function () {
-            var urlFiles = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory';
+            var urlFiles = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory';            
+            
             return $http.get(urlFiles);
+
         };
 
         return factory;

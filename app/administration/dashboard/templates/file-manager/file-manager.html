@@ -2,13 +2,54 @@
 
     <h2>Sample FileManager page!</h2>
 
-    <ul>
-        <li ng-repeat="file in files" ng-click="loadFolder(file)">
+    <!--<ul>
+        <li ng-repeat="file in cb.getFiles()" 
+            ng-dblclick="loadFolder(file)">
             {{file.folder}} <br>
             {{file.name}}  <br> 
             <img ng-src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt="">
         </li>
-    </ul>    
+    </ul> -->
+
+    <!--<ul>
+        <li ng-repeat="file in files" 
+            ng-dblclick="loadFolder(file)">
+            {{file.folder}} <br>
+            {{file.name}}  <br> 
+            <img ng-src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt="">
+        </li>
+    </ul> -->
+
+
+    <md-menu ng-repeat="file in files" >
+        <md-button class="btn1" aria-label="Open phone interactions menu" 
+            class="md-icon-button button-upload" 
+            ng-click=""
+            ng-dblclick="loadFolder(file)"
+            ng-right-click="$mdOpenMenu($event)">
+                <img src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt=""><br>
+                {{file.name}}
+        </md-button>
+        <md-menu-content width="4">
+            <md-menu-item>
+                <md-button ng-click="loadFolder(file)">
+                    Open
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button ng-click="ctrl.redial($event)">
+                    Rename
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button ng-click="delete(file)">
+                    Delete
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+
+    <div class="clerfix"></div>
 
     <md-button id="btn-cancel" ng-click="parentDirectory()" class="md-accent">Back</md-button>
     <md-button id="btn-save" ng-click="save()" class="md-primary">Save</md-button>
