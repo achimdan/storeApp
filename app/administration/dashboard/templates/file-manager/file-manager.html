@@ -25,10 +25,16 @@
         <md-button class="btn1" aria-label="Open phone interactions menu" 
             class="md-icon-button button-upload" 
             ng-click=""
+            multiple ng-multiple="true"
             ng-dblclick="loadFolder(file)"
             ng-right-click="$mdOpenMenu($event)">
                 <img src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt=""><br>
-                {{file.name}}
+                <br>
+                <md-checkbox 
+                    ng-model="formData.checked[$index]"
+                    aria-label="Checkbox 1">
+                    {{file.name}}
+                </md-checkbox>
         </md-button>
         <md-menu-content width="4">
             <md-menu-item>
@@ -42,7 +48,7 @@
                 </md-button>
             </md-menu-item>
             <md-menu-item>
-                <md-button ng-click="delete(file)">
+                <md-button ng-click="delete(formData)">
                     Delete
                 </md-button>
             </md-menu-item>

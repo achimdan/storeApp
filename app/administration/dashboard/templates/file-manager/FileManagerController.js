@@ -19,7 +19,8 @@
         var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',
             urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder',
             urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory',
-            urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory';
+            urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory',
+            urlRefresh = 'http://77.81.178.198:25001/onlineShop/fileManager/refreshDirectory';
 
 
         var successCallback =  function (success) {
@@ -44,8 +45,7 @@
         };
 
         var successDelete =  function (success) {
-          	get();
-            
+          	refresh();
         };
 
         var errorDelete =  function (error) {
@@ -65,6 +65,13 @@
             };
             $http.post(urlNavigate,data).then(successNavigate,errorNavigate)
         }; 
+
+        var refresh = function () {
+            var data = {
+                path: $scope.thePath.path
+            }
+            $http.post(urlRefresh,data).then(successCallback,errorCallback);
+        };
 
         $scope.loadFolder = function (file) {
             $scope.theFile = file;
@@ -89,15 +96,27 @@
             $mdDialog.cancel();
         };
 
-        $scope.delete = function(file,path) {
-            console.log(file);
+        $scope.delete = function(formData) {
+            console.log($scope.formData.checked[0]);
+            var files = [];
+            _.forEach($scope.formData.checked, function(each,index){
+                if (each === true ) {
+                    files.push({
+                        fileName: $scope.files[index].name
+                    });
+                }
+            });
+
             var data = {
-                fileName: file.name,
-                path: $scope.thePath.path
+              path: $scope.thePath.path
             };
+            data.files = files;
             $http.post(urlDelete,data).then(successDelete,errorDelete);
             
         };
+
+        $scope.formData = {};
+        $scope.formData.checked = false;
 
 })
 
