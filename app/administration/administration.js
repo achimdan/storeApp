@@ -38,8 +38,10 @@
             templateUrl: 'administration/dashboard/templates/products/products.html',
             controller: 'productsCtrl',
             ncyBreadcrumb: {
-                label: 'Porducts'
-            }
+                label: 'Products'
+            },
+            // ncyBreadcrumbLabel: '<i class="fa fa-rocket logo-icon" aria-hidden="true"></i>'
+           
 		});
         //Add Product route
         $stateProvider.state('dashboard.add-product', {

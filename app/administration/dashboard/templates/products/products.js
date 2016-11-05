@@ -7,7 +7,15 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').controller('productsCtrl', function($scope,$http) {
+    angular.module('administration').controller('productsCtrl', function($scope, $http, productsService) {
+
+        productsService.fetchProducts();
+        $scope.cb = {
+            getProducts : productsService.getProducts
+            // pagination  : productsService.pagination
+        };
+        
+        $scope.selected = [];
 
         $scope.query = {
             order: 'name',

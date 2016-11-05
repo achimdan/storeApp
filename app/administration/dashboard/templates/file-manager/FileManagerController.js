@@ -99,27 +99,27 @@
         //     $mdDialog.cancel();
         // };
 
-        $scope.delete = function(formData) {
-            console.log($scope.formData.checked[0]);
-            var files = [];
-            _.forEach($scope.formData.checked, function(each,index){
-                if (each === true ) {
-                    files.push({
-                        fileName: $scope.files[index].name
-                    });
-                }
-            });
+        // $scope.delete = function(formData) {
+        //     console.log($scope.formData.checked[0]);
+        //     var files = [];
+        //     _.forEach($scope.formData.checked, function(each,index){
+        //         if (each === true ) {
+        //             files.push({
+        //                 fileName: $scope.files[index].name
+        //             });
+        //         }
+        //     });
 
-            var data = {
-              path: $scope.thePath.path
-            };
-            data.files = files;
-            $http.post(urlDelete,data).then(successDelete,errorDelete);
+        //     var data = {
+        //       path: $scope.thePath.path
+        //     };
+        //     data.files = files;
+        //     $http.post(urlDelete,data).then(successDelete,errorDelete);
             
-        };
+        // };
 
-        $scope.formData = {};
-        $scope.formData.checked = false;
+        // $scope.formData = {};
+        // $scope.formData.checked = false;
 
 })
 
