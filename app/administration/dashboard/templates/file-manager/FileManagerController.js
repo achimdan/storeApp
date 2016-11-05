@@ -10,91 +10,94 @@
     angular.module('administration')
     .controller('FileManagerController', function($scope, $mdDialog, $http, fileManagerService) {
         
-        // fileManagerService.fetchFiles();
-        // $scope.cb = {
-        //     getFiles : fileManagerService.getFiles
+        fileManagerService.fetchFiles();
+        $scope.cb = {
+            getFiles        : fileManagerService.getFiles,
+            loadFolder      : fileManagerService.loadFolder,
+            parentDirectory : fileManagerService.parentDirectory,
+            delete          : fileManagerService.delete
+        };
+        
+
+        // var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',
+        //     urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder',
+        //     urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory',
+        //     urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory',
+        //     urlRefresh = 'http://77.81.178.198:25001/onlineShop/fileManager/refreshDirectory';
+
+
+        // var successCallback =  function (success) {
+        //   	$scope.files = success.data.files;
+        //   	$scope.thePath = success.data;
+        //     console.log('successCallback',success);
+
+        // };
+
+        // var errorCallback =  function (error) {
+		// 	console.log(error);
+        // };
+
+        // var successNavigate =  function (success) {
+        //   	console.log('successNavigate',success);
+        //     $scope.files = success.data.files;
+        //     $scope.thePath = success.data;
+        // };
+
+        // var errorNavigate =  function (error) {
+		// 	console.log('errorNavigate',error);
+        // };
+
+        // var successDelete =  function (success) {
+        //   	refresh();
+        // };
+
+        // var errorDelete =  function (error) {
+		// 	console.log('errorDelete',error);
         // };
         
+        // var get = function () {
+		// 	$http.get(url).then(successCallback,errorCallback);
+        // };
 
-        var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',
-            urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder',
-            urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory',
-            urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory',
-            urlRefresh = 'http://77.81.178.198:25001/onlineShop/fileManager/refreshDirectory';
+        // get();
 
+        // var navigateFolders = function () {
+        //     var data = {
+        //         'fileName': $scope.theFile.name,
+        //         'path' : $scope.thePath.path
+        //     };
+        //     $http.post(urlNavigate,data).then(successNavigate,errorNavigate)
+        // }; 
 
-        var successCallback =  function (success) {
-          	$scope.files = success.data.files;
-          	$scope.thePath = success.data;
-            console.log('successCallback',success);
+        // var refresh = function () {
+        //     var data = {
+        //         path: $scope.thePath.path
+        //     }
+        //     $http.post(urlRefresh,data).then(successCallback,errorCallback);
+        // };
 
-        };
+        // $scope.loadFolder = function (file) {
+        //     $scope.theFile = file;
+        //     if (file.folder === true) {
+        //         navigateFolders();
+        //     }
+        // };
 
-        var errorCallback =  function (error) {
-			console.log(error);
-        };
+        // $scope.parentDirectory = function () {
+        //     if ($scope.thePath.root === false) {
+        //         var data = {
+        //             'path' : $scope.thePath.path
+        //         };
+        //         $http.post(urlParent,data).then(successNavigate,errorNavigate)
+        //     }
+        // };
 
-        var successNavigate =  function (success) {
-          	console.log('successNavigate',success);
-            $scope.files = success.data.files;
-            $scope.thePath = success.data;
-        };
-
-        var errorNavigate =  function (error) {
-			console.log('errorNavigate',error);
-        };
-
-        var successDelete =  function (success) {
-          	refresh();
-        };
-
-        var errorDelete =  function (error) {
-			console.log('errorDelete',error);
-        };
-        
-        var get = function () {
-			$http.get(url).then(successCallback,errorCallback);
-        };
-
-        get();
-
-        var navigateFolders = function () {
-            var data = {
-                'fileName': $scope.theFile.name,
-                'path' : $scope.thePath.path
-            };
-            $http.post(urlNavigate,data).then(successNavigate,errorNavigate)
-        }; 
-
-        var refresh = function () {
-            var data = {
-                path: $scope.thePath.path
-            }
-            $http.post(urlRefresh,data).then(successCallback,errorCallback);
-        };
-
-        $scope.loadFolder = function (file) {
-            $scope.theFile = file;
-            if (file.folder === true) {
-                navigateFolders();
-            }
-        };
-
-        $scope.parentDirectory = function () {
-            if ($scope.thePath.root === false) {
-                var data = {
-                    'path' : $scope.thePath.path
-                };
-                $http.post(urlParent,data).then(successNavigate,errorNavigate)
-            }
-        };
-
-        $scope.save = function() {
-            $mdDialog.hide();
-        };
-        $scope.cancel = function() {
-            $mdDialog.cancel();
-        };
+        // $scope.save = function() {
+        //     $mdDialog.hide();
+        // };
+        // $scope.cancel = function() {
+        //     $mdDialog.cancel();
+        // };
 
         $scope.delete = function(formData) {
             console.log($scope.formData.checked[0]);

@@ -14,9 +14,39 @@
 
         factory.fetchFiles = function () {
             var urlFiles = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory';            
-            
             return $http.get(urlFiles);
 
+        };
+
+        factory.navigateFolders = function (data) {
+            var urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder';
+
+            return $http({
+                url: urlNavigate,
+                method: 'POST',
+                data: data
+            });
+
+        }; 
+
+        factory.parent = function (path) {
+            var urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory';
+
+            return $http({
+                url: urlParent,
+                method: 'POST',
+                data: path
+            });
+        };
+
+        factory.delete = function (path) {
+            var urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory';
+
+            return $http({
+                url: urlDelete,
+                method: 'POST',
+                data: path
+            });
         };
 
         return factory;

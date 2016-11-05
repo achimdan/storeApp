@@ -17,16 +17,54 @@
                 loaded: false,
                 fetching: false,
                 data: {}
+            },
+            theFile = {
+                loaded: false,
+                fetching: false,
+                checked: false,
+                data: {}
+            },
+            formData = {
+                data: {}
             };
 
         var successCallback = function (success) {
-            console.log('==============',success.data.files);
+            console.log('==============',success.data);
             files.fetching = false;
             files.loaded = true;
-            files.data = success.data.files;
+            files.data = success.data;
         };
         var errorCallback = function (error) {
             console.log(error);
+        };
+
+        var successNavigate = function (success) {
+          	files.fetching = false;
+            files.loaded = true;
+            files.data = success.data;
+        };
+
+        var errorNavigate = function (error) {
+			console.log('errorNavigate',error);
+        };
+
+        var successDelete = function (success) {
+            console.log(success);
+          	// refresh();
+        };
+        
+        var errorDelete = function (error) {
+            console.log(error);
+        }
+
+        factory.navigate = function () {
+            // var data = _.pick(files.data,['path'],theFile.data['name']);
+            files.fetching = true;
+            var data = {
+                path: files.data.path,
+                name: theFile.data.name
+            }
+            fileManager.navigateFolders(data).then(successNavigate,errorNavigate);
         };
 
         factory.fetchFiles = function () {
@@ -38,10 +76,76 @@
             return files.data.files;
         };
 
+        factory.loadFolder = function (file) {
+            if (file.folder === true) {
+                theFile.data = file;
+                theFile.fetching = false;
+                theFile.loaded = true;
+                
+                factory.navigate();
+            }
+        };
+
+        factory.parentDirectory = function () {
+            if (files.data.root === false) {
+                var data = {
+                    'path' : files.data.path
+                };
+                fileManager.parent(data).then(successNavigate,errorNavigate);
+            }
+        };
+
+        factory.delete = function () {
+            var theFiles = [];
+            _.forEach(files.data.files, function(each) {
+                _.forEach(each.checked, function(eachCheck,index) {
+                    if (eachCheck === true) {
+                        theFiles.push({
+                            fileName: files.data.files[index].name
+                        });
+                    }
+                });
+                var data = {
+                    path: files.data.path 
+                };
+                data.theFiles = theFiles;
+                fileManager.delete(data).then(successDelete,errorDelete);
+            });
+
+        };
+
+        // $scope.delete = function(formData) {
+        //     console.log($scope.formData.checked[0]);
+        //     var files = [];
+        //     _.forEach($scope.formData.checked, function(each,index){
+        //         if (each === true ) {
+        //             files.push({
+        //                 fileName: $scope.files[index].name
+        //             });
+        //         }
+        //     });
+
+        //     var data = {
+        //       path: $scope.thePath.path
+        //     };
+        //     data.files = files;
+        //     $http.post(urlDelete,data).then(successDelete,errorDelete);
+            
+        // };
+
         factory.init = function () {
             files = {
                 loaded: false,
                 fetching: false,
+                data: {}
+            };
+            theFile = {
+                loaded: false,
+                fetching: false,
+                checked: false,
+                data: {}
+            };
+            formData = {
                 data: {}
             };
 

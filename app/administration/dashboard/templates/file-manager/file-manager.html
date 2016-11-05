@@ -21,24 +21,24 @@
     </ul> -->
 
 
-    <md-menu ng-repeat="file in files" >
+    <md-menu ng-repeat="file in cb.getFiles()" >
         <md-button class="btn1" aria-label="Open phone interactions menu" 
             class="md-icon-button button-upload" 
             ng-click=""
             multiple ng-multiple="true"
-            ng-dblclick="loadFolder(file)"
+            ng-dblclick="cb.loadFolder(file)"
             ng-right-click="$mdOpenMenu($event)">
                 <img src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt=""><br>
                 <br>
                 <md-checkbox 
-                    ng-model="formData.checked[$index]"
+                    ng-model="file.checked[$index]"
                     aria-label="Checkbox 1">
                     {{file.name}}
                 </md-checkbox>
         </md-button>
         <md-menu-content width="4">
             <md-menu-item>
-                <md-button ng-click="loadFolder(file)">
+                <md-button ng-click="cb.loadFolder(file)">
                     Open
                 </md-button>
             </md-menu-item>
@@ -48,7 +48,7 @@
                 </md-button>
             </md-menu-item>
             <md-menu-item>
-                <md-button ng-click="delete(formData)">
+                <md-button ng-click="cb.delete()">
                     Delete
                 </md-button>
             </md-menu-item>
@@ -57,7 +57,7 @@
 
     <div class="clerfix"></div>
 
-    <md-button id="btn-cancel" ng-click="parentDirectory()" class="md-accent">Back</md-button>
+    <md-button id="btn-cancel" ng-click="cb.parentDirectory()" class="md-accent">Back</md-button>
     <md-button id="btn-save" ng-click="save()" class="md-primary">Save</md-button>
     <md-button id="btn-cancel" ng-click="cancel()" class="md-accent">Cancel</md-button>
 
