@@ -18,7 +18,7 @@
             },
             query = {
                 order: 'name',
-                limit: 5,
+                limit: 10,
                 page: 1
             };
 
@@ -35,8 +35,12 @@
             return products.data.content;
         };
 
-        factory.getPagination = function () {
-            return products.data.content;
+        factory.getTotalElements = function () {
+            return products.data.totalElements;
+        };
+
+        factory.getTotalPages = function () {
+            return products.data.totalPages;
         };
 
         factory.pagination = function (query) {
@@ -44,11 +48,7 @@
                 products.fetching = true;
                 Products.fetchProducts(query).then(successCallback,errorCallback);
             }
-            // console.log(query);
-            // query.limit = query.limit;
-            // query.page = query.page;
-            // return factory.getProducts();
-            // return;
+
         };
 
         factory.fetchProducts = function () {

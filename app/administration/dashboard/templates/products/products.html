@@ -49,16 +49,14 @@
 				</tbody>
 			</table>
 		</md-table-container>
-		
 		<md-table-pagination 
 			md-limit="query.limit" 
-			md-limit-options="[5, 10, 15]" 
+			md-limit-options="[10, 20, 30]" 
 			md-page="query.page" 
-			md-total="{{product.totalElements}}"
 			md-on-paginate="getPage" 
-			md-page-select="product.totalPages">
+			md-total="{{cb.getTotalElements()}}"
+			md-page-select="cb.getTotalPages()">
 		</md-table-pagination>
-
 	</div>
 </div>
 
