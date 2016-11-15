@@ -27,7 +27,8 @@
     "angular-material": "^1.1.1",
     "angular-breadcrumb": "^0.4.1",
     "angular-material-data-table": "^0.10.9",
-    "material-angular-paging": "*"
+    "material-angular-paging": "*",
+    "lf-ng-md-file-input": "^1.4.8"
   },
   "resolutions": {
     "angular-animate": "~1.3.2",

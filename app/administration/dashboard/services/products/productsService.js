@@ -23,7 +23,7 @@
             };
 
         var successCallback = function (success) {
-            console.log(success);
+            console.log(success.data);
             products.data = success.data;
         };
 
@@ -35,13 +35,20 @@
             return products.data.content;
         };
 
+        factory.getPagination = function () {
+            return products.data.content;
+        };
+
         factory.pagination = function (query) {
             if (query !== undefined) {
-                // Products.fetchProducts(query).then(successCallback,errorCallback);
+                products.fetching = true;
+                Products.fetchProducts(query).then(successCallback,errorCallback);
             }
+            // console.log(query);
             // query.limit = query.limit;
             // query.page = query.page;
-            return factory.getProducts();
+            // return factory.getProducts();
+            // return;
         };
 
         factory.fetchProducts = function () {

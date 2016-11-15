@@ -55,6 +55,16 @@
         
         var errorDelete = function (error) {
             console.log(error);
+        };
+
+        var successUpload = function (success) {
+            console.log(success);
+         
+          	// refresh();
+        };
+        
+        var errorUpload = function (error) {
+            console.log(error);
         }
 
         factory.navigate = function () {
@@ -62,7 +72,7 @@
             files.fetching = true;
             var data = {
                 path: files.data.path,
-                name: theFile.data.name
+                fileName: theFile.data.name
             }
             fileManager.navigateFolders(data).then(successNavigate,errorNavigate);
         };
@@ -111,7 +121,11 @@
                 data.theFiles = theFiles;
                 fileManager.delete(data).then(successDelete,errorDelete);
             });
+        };
 
+
+        factory.upload = function () {
+            fileManager.upload(successUpload,errorUpload);
         };
 
         // $scope.delete = function(formData) {

@@ -55,9 +55,10 @@
 			md-limit-options="[5, 10, 15]" 
 			md-page="query.page" 
 			md-total="{{product.totalElements}}"
-			md-on-paginate="cb.pagination(query)" 
+			md-on-paginate="getPage" 
 			md-page-select="product.totalPages">
 		</md-table-pagination>
 
 	</div>
 </div>
+

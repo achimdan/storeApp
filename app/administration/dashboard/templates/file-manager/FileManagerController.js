@@ -15,8 +15,13 @@
             getFiles        : fileManagerService.getFiles,
             loadFolder      : fileManagerService.loadFolder,
             parentDirectory : fileManagerService.parentDirectory,
-            delete          : fileManagerService.delete
+            delete          : fileManagerService.delete,
+            upload          : fileManagerService.upload
         };
+
+        $scope.$watch('files.length',function(newVal,oldVal){
+            console.log($scope.files);
+        });
         
 
         // var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',

@@ -21,6 +21,14 @@
     </ul> -->
 
 <md-button id="btn-cancel" ng-click="cb.uploadFiles()" class="md-accent">Upload</md-button>
+
+<lf-ng-md-file-input lf-files="files01" lf-api="api01" ng-disabled="disabled01"></lf-ng-md-file-input>
+<md-button class="md-raised md-warn" ng-click="api01.removeAll()">remove all file outside</md-button>
+<md-checkbox ng-model="disabled01" aria-label="disabled01">
+    Disable
+</md-checkbox>
+<!--<lf-ng-md-file-input lf-files="filesProgress" multiple progress></lf-ng-md-file-input>-->
+
 <br>
     <md-menu ng-repeat="file in cb.getFiles()" >
         <md-button class="btn1" aria-label="Open phone interactions menu" 

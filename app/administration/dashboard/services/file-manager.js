@@ -49,6 +49,15 @@
             });
         };
 
+        factory.upload = function (path) {
+            var urlUpload = 'http://77.81.178.198:25001/onlineShop/upload/files';
+
+            return $http({
+                url: urlUpload,
+                method: 'POST'
+            });
+        };
+
         return factory;
 
     });
