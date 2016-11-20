@@ -16,6 +16,11 @@
                 fetching: true,
                 data: {}
             },
+            product = {
+                loaded: false,
+                fetching: true,
+                data: {}
+            },
             query = {
                 order: 'name',
                 limit: 10,
@@ -25,6 +30,7 @@
         var successCallback = function (success) {
             console.log(success.data);
             products.data = success.data;
+            product.data = success.data;
         };
 
         var errorCallback = function (error) {
@@ -33,6 +39,10 @@
         
         factory.getProducts = function () {
             return products.data.content;
+        };
+
+        factory.getProduct = function () {
+            return product.data;
         };
 
         factory.getTotalElements = function () {
@@ -56,8 +66,18 @@
             Products.fetchProducts(query).then(successCallback,errorCallback);
         };
 
+        factory.fetchProduct = function (id) {
+            product.fetching = true;
+            Products.fetchProduct(id).then(successCallback,errorCallback);
+        };
+
         factory.init = function (newMode) {
             products = {
+                loaded: false,
+                fetching: true,
+                data: {}
+            };
+            product = {
                 loaded: false,
                 fetching: true,
                 data: {}

@@ -13,27 +13,28 @@
     angular.module('administration').config(function($stateProvider) {
 
         // Category route
-        $stateProvider.state('dashboard.categories', {
+        $stateProvider
+        .state('dashboard.categories', {
             url: '/categories',
             templateUrl: 'administration/dashboard/templates/categories/categories.html',
             controller: 'categoriesCtrl',
             ncyBreadcrumb: {
                 label: 'Categories'
             }
-        });
+        })
         //Add Category route
-        $stateProvider.state('dashboard.add-category', {
-            url: '/category/add',
-            templateUrl: 'administration/dashboard/templates/add-category/add-category.html',
-            controller: 'addCategoryCtrl',
+        .state('dashboard.category', {
+            url: '/category/:id',
+            templateUrl: 'administration/dashboard/templates/category/category.html',
+            controller: 'categoryController',
             ncyBreadcrumb: {
-                label: 'Categories / Add Category'
+                label: 'Categories / Category'
                 // parent: 'categories'
             }
-        });
+        })
         
         // Products route
-        $stateProvider.state('dashboard.products', {
+        .state('dashboard.products', {
             url: '/products',
             templateUrl: 'administration/dashboard/templates/products/products.html',
             controller: 'productsCtrl',
@@ -42,26 +43,22 @@
             },
             // ncyBreadcrumbLabel: '<i class="fa fa-rocket logo-icon" aria-hidden="true"></i>'
            
-		});
+		})
         //Add Product route
-        $stateProvider.state('dashboard.add-product', {
-            url: '/product/add',
-            templateUrl: 'administration/dashboard/templates/add-product/add-product.html',
-            controller: 'addProductCtrl',
+        .state('dashboard.product', {
+            url: '/product/:id',
+            templateUrl: 'administration/dashboard/templates/product/product.html',
+            controller: 'productController',
             ncyBreadcrumb: {
-                label: 'Products / Add Product'
+                label: 'Products / Product'
                 // parent: 'products'
             }
-        });
+        })
 
-        $stateProvider.state('dashboard.file-manager', {
+        .state('dashboard.file-manager', {
             url: '/file-manager',
             templateUrl: 'administration/dashboard/templates/file-manager/file-manager.html',
-            controller: 'FileManagerController',
-            ncyBreadcrumb: {
-                label: 'Products / Add Product'
-                // parent: 'products'
-            }
+            controller: 'FileManagerController'
 		});
 
     });

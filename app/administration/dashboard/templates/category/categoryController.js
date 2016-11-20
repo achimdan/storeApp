@@ -7,7 +7,7 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').controller('addCategoryCtrl', function($scope,$http,$timeout,$q,$log) {
+    angular.module('administration').controller('categoryController', function($scope,$http,$timeout,$q,$log) {
 
         $scope.sendPost = function(formData) {
             var url = 'http://77.81.178.198:25001/onlineShop/categories';

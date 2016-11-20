@@ -16,6 +16,11 @@
             return $http.get(urlProducts);
         };
 
+        factory.fetchProduct = function (id) {
+            var urlProduct = 'http://77.81.178.198:25001/onlineShop/products/' + id;
+            return $http.get(urlProduct);
+        };
+
         return factory;
 
     });

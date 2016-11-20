@@ -3,12 +3,17 @@
 		<div class="add-button-container">
 			<md-button  class="md-fab add-button-round" 
 						aria-label="Add category" 
-						ui-sref="dashboard.add-product">
+						ui-sref="dashboard.product">
 					<md-tooltip md-direction="left">
 						Add product
 					</md-tooltip>
 				<md-icon class="material-icons">add</md-icon>
 			</md-button>
+
+			<!--<md-button  class="md-fab add-button-round"
+						ng-click="showAdvanced($event)">
+						<md-icon class="material-icons">add</md-icon>
+			</md-button>-->
 		</div>
 	</div>
 	<div>
@@ -37,7 +42,7 @@
 						<td md-cell>{{product.quantity}}</td>
 						<td md-cell><i class="material-icons checked">check_circle</i></td>
 						<td md-cell>
-							<md-button class="md-icon-button" aria-label="Add product">
+							<md-button ng-click="edit(product)" class="md-icon-button" aria-label="Add product">
 								<md-icon class="fa fa-pencil">
 									<md-tooltip md-direction="left">
 										Edit {{product.name}}
@@ -55,8 +60,19 @@
 			md-page="query.page" 
 			md-on-paginate="getPage" 
 			md-total="{{cb.getTotalElements()}}"
+			class="pagination-footer"
 			md-page-select="cb.getTotalPages()">
 		</md-table-pagination>
+
+		<!--<md-table-pagination 
+			md-limit="query.limit" 
+			md-limit-options="limitOptions" 
+			md-page="query.page" 
+			md-total="{{desserts.count}}" 
+			md-page-select="options.pageSelect" 
+			md-boundary-links="options.boundaryLinks" 
+			md-on-paginate="logPagination">
+		</md-table-pagination>-->
 	</div>
 </div>
 

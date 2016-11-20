@@ -7,9 +7,30 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').controller('addProductCtrl', 
-    function($scope,$http,$timeout,$q,$log,$mdDialog) {
+    angular.module('administration').controller('productController', 
+    function($scope,$http,$timeout,$q,$log,$mdDialog,$state,productsService) {
 
+        productsService.fetchProduct($state.params.id);
+        $scope.cb = {
+            getProduct : productsService.getProduct
+        };
+
+
+        var successCallback = function (success) {
+            console.log(success);
+        };
+
+        var errorCallback = function (error) {
+            console.log(error);
+        };
+
+        // if () {
+
+        // }
+        // var getProduct = function () {
+        //     var urlProduct = '';
+        //     $http.get().$promise.then(successCallback,errorcallback);
+        // };
 
         $scope.sendPost = function(formData) {
             var url = 'http://77.81.178.198:25001/onlineShop/products';
@@ -44,8 +65,7 @@
             }).then(function successCallback(response) {
                 console.log(response);
               }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+                  consle.log(response);
               });
         };
 

@@ -1,13 +1,14 @@
 <div class="inner-box">
-    <form class="form-horizontal" name="addProductForm" ng-submit="sendPost(formData)" novalidate>
-	    <div class="row">
-		    <div class="col-md-6">
-				<h3>Add Product</h3>
-			</div>
-			<div class="col-md-6">
-				<div class="pull-right">
+    <form class="form-horizontal" 
+          name="addProductForm" 
+          ng-submit="sendPost(formData)" 
+          novalidate>
+
+	    <div class="clearfix">
+			<div class="col-md-12">
+				<div class="pull-right add-button-container">
 			        <md-button 
-			        		class="md-fab md-primary md-mini custom-btn" 
+			        		class="md-fab md-primary md-mini add-button-round save-green" 
 			        		aria-label="Add product" 
 			        		type="submit" 
 			        		ng-class="{isDisabled: addCategoryForm.$invalid}"
@@ -15,25 +16,62 @@
 					    <md-tooltip md-direction="top">
 				          	Save
 				        </md-tooltip>
-			          	<md-icon class="fa fa-floppy-o"></md-icon>
+			          	<md-icon class="material-icons dev-icon">save</md-icon>
 			        </md-button>
 			        <md-button 
-			        		class="md-fab md-primary md-mini custom-btn" 
+			        		class="md-fab md-primary md-mini custom-btn add-button-round" 
 	        				aria-label="Add category" 
-        					ui-sref="dashboard.categories">
+        					ui-sref="dashboard.products">
 					    <md-tooltip md-direction="top">
 				          	Cancel
 				        </md-tooltip>
-			          	<md-icon class="fa fa-angle-double-left"></md-icon>
+			          	<md-icon class="material-icons dev-icon">arrow_back</md-icon>
 			        </md-button>
 				</div>
 			</div>
-		</div>
+        </div> 
 	    <md-content>
-	        <md-tabs md-dynamic-height md-border-bottom  class="content-md">
+	        <md-tabs md-dynamic-height md-border-bottom>
 	            <md-tab label="General">
 	                <md-content class="md-padding content-md">
-                        <div class="form-group">
+
+                        <md-input-container class="col-md-12 input-container">
+                            <label>Product Name</label>
+                            <input class="input-line" 
+                                   ng-model="cb.getProduct().name" 
+                                   name="name" 
+                                   required>
+                            <div ng-messages="addProductForm.name.$error">
+                                <div ng-message="required">This is required.</div>
+                                <!--<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>-->
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="col-md-12 input-container">
+                            <label>Model</label>
+                            <input class="input-line" ng-model="cb.getProduct().model">
+                        </md-input-container>
+                        <md-input-container class="col-md-12 input-container">
+                            <label>Price</label>
+                            <input class="input-line" ng-model="cb.getProduct().price">
+                        </md-input-container>
+                        <md-input-container class="col-md-12 input-container">
+                            <label>Quantity</label>
+                            <input class="input-line" ng-model="cb.getProduct().quantity">
+                        </md-input-container>
+                        <md-input-container class="col-md-12 input-container">
+                            <label>Stock Status</label>
+                            <md-icon class="material-icons">assignment</md-icon>
+                            <input class="input-line" ng-model="cb.getProduct().stockStatus">
+                            <!--<md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
+                                <md-option 
+                                    ng-value="stock" 
+                                    ng-repeat="stock in stocks">
+                                    <span ng-bind="user.name"></span>
+                                </md-option>
+                            </md-select>-->
+                        </md-input-container>
+                        
+                        <!--<div class="form-group">
                             <label for="categoryName" class="col-sm-2 control-label">
                                 Product Name
                             </label>
@@ -43,11 +81,11 @@
                                 		class="form-control" 
                                 		id="categoryName" 
                                 		placeholder="Category Name"
-                                		ng-model="formData.name"
+                                		ng-model="cb.getProduct().name"
                                 		required/>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <!--<div class="form-group">
                             <label for="categoryModel" class="col-sm-2 control-label">
                                 Model
                             </label>
@@ -57,11 +95,11 @@
                                 		class="form-control" 
                                 		id="categoryModel" 
                                 		placeholder="Model"
-                                		ng-model="formData.model"
+                                		ng-model="cb.getProduct().model"
                                 		required/>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <!--<div class="form-group">
                             <label for="categoryPrice" class="col-sm-2 control-label">
                                 Price
                             </label>
@@ -71,11 +109,11 @@
                                 		class="form-control" 
                                 		id="categoryPrice" 
                                 		placeholder="Price"
-                                		ng-model="formData.price"
+                                		ng-model="cb.getProduct().price"
                                 		required/>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <!--<div class="form-group">
                             <label for="categoryQuantity" class="col-sm-2 control-label">
                                 Quantity
                             </label>
@@ -85,11 +123,11 @@
                                 		class="form-control" 
                                 		id="categoryQuantity" 
                                 		placeholder="Quantity"
-                                		ng-model="formData.quantity"
+                                		ng-model="cb.getProduct().quantity"
                                 		required/>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <!--<div class="form-group">
                             <label for="stockStatus" class="col-sm-2 control-label">
                                 Out Of Stock
                             </label>
@@ -99,29 +137,48 @@
                                     class="form-control" 
                                     id="stockStatus" 
                                     placeholder="Out of Stock"
-                                    ng-model="formData.stockStatus"
+                                    ng-model="cb.getProduct().stockStatus"
                                     required/>
-                                <!--<md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
+                                <md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
                                     <md-option 
                                         ng-value="stock" 
                                         ng-repeat="stock in stocks">
                                         <span ng-bind="user.name"></span>
                                     </md-option>
-                                </md-select>-->
+                                </md-select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="shipping" class="col-sm-2 control-label">
-                                Necesita transport?
+                                Transportation?
                             </label>
                             <div class="col-sm-10">
-                                <md-radio-group ng-model="data.shipping">
-                                    <md-radio-button value="DA" class="md-primary">Da</md-radio-button>
-                                    <md-radio-button value="NU">Nu</md-radio-button>
+                                <md-radio-group ng-model="cb.getProduct().shipping">
+                                    <md-radio-button value="YES" class="md-primary">YES</md-radio-button>
+                                    <md-radio-button value="NO">No</md-radio-button>
                                 </md-radio-group>
                             </div>
                         </div>
-                        <div class="form-group">
+
+                        <md-input-container class="col-md-3 input-container">
+                            <label>Length</label>
+                            <input class="input-line" ng-model="cb.getProduct().dimensionL" required required>
+                        </md-input-container>
+                        <md-input-container class="col-md-3 input-container">
+                            <label>Width</label>
+                            <input class="input-line" ng-model="cb.getProduct().dimensionW">
+                        </md-input-container>
+                        <md-input-container class="col-md-3 input-container">
+                            <label>Height</label>
+                            <input class="input-line" ng-model="cb.getProduct().dimensionH">
+                        </md-input-container>
+
+                        <md-input-container class="col-md-3 input-container">
+                            <label>Weight</label>
+                            <input class="input-line" ng-model="cb.getProduct().weight">
+                        </md-input-container>
+
+                        <!--<div class="form-group">
                             <label for="" class="col-sm-2 control-label">
                                 Dimensiuni
                             </label>
@@ -133,7 +190,7 @@
                                                 class="form-control" 
                                                 id="dimensionL" 
                                                 placeholder="Length"
-                                                ng-model="formData.dimensionL"
+                                                ng-model="cb.getProduct().dimensionL"
                                                 required/>
                                     </div>
                                     <div class="col-sm-4">
@@ -142,7 +199,7 @@
                                                 class="form-control" 
                                                 id="dimensionW" 
                                                 placeholder="Width"
-                                                ng-model="formData.dimensionW"
+                                                ng-model="cb.getProduct().dimensionW"
                                                 required/>
                                     </div>
                                     <div class="col-sm-4">
@@ -151,13 +208,13 @@
                                                 class="form-control" 
                                                 id="dimensionH" 
                                                 placeholder="Height"
-                                                ng-model="formData.dimensionH"
+                                                ng-model="cb.getProduct().dimensionH"
                                                 required/>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div>-->
+                        <!--<div class="form-group">
                             <label for="weight" class="col-sm-2 control-label">
                                 Weight
                             </label>
@@ -167,10 +224,10 @@
                                 		class="form-control" 
                                 		id="weight" 
                                 		placeholder="Weight"
-                                		ng-model="formData.weight"
+                                		ng-model="cb.getProduct().weight"
                                 		required/>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="description" class="col-sm-2 control-label">
                             	Description
@@ -179,7 +236,7 @@
                                 <textarea 
                             			class="form-control" 
                             			rows="5" 
-                            			ng-model="formData.description"
+                            			ng-model="cb.getProduct().description"
                             			id="description">
                     			</textarea>
                             </div>
@@ -194,7 +251,7 @@
                                     class="form-control" 
                                     id="Manufacturer" 
                                     placeholder="Manufacturer"
-                                    ng-model="formData.manufacturer"
+                                    ng-model="cb.getProduct().manufacturer"
                                     required/>
                                 <!--<md-autocomplete 
 	                        		md-selected-item="formData.manufacturer" 
@@ -249,7 +306,7 @@
                                 		class="form-control" 
                                 		id="metaTitle" 
                                 		placeholder="Meta Tag Title" 
-                                		ng-model="formData.metaTitle"
+                                		ng-model="cb.getProduct().metaTitle"
                                 		required/>
                             </div>
                         </div>
@@ -259,7 +316,7 @@
                                 <textarea 
                                 		class="form-control" 
                                 		rows="5"
-                                		ng-model="formData.metaDescription"
+                                		ng-model="cb.getProduct().metaDescription"
                                 		id="metaDescription">
                         		</textarea>
                             </div>
@@ -270,7 +327,7 @@
                                 <textarea 
                                 		class="form-control" 
                                 		rows="5" 
-                                		ng-model="formData.metaKeywords"
+                                		ng-model="cb.getProduct().metaKeywords"
                                 		id="metaKeywords">
                         		</textarea>
                             </div>
@@ -285,6 +342,6 @@
 	                </md-content>
 	            </md-tab>
 	        </md-tabs>
-	    </md-content>
+	    </md-content>    
 	</form>
 </div>
