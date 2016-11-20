@@ -15,10 +15,15 @@
         $scope.cb = {
             getCategories       : categoriesService.getCategories,
             getTotalElements    : categoriesService.getTotalElements,
-            getTotalPages       : categoriesService.getTotalPages
+            getTotalPages       : categoriesService.getTotalPages,
+            delCategory         : categoriesService.delCategory
         };
         
         $scope.selected = [];
+
+        $scope.delete = function (selected) {
+          console.log(selected);
+        };
 
         $scope.query = {
             limit: 10,

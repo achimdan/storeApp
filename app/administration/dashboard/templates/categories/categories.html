@@ -1,9 +1,19 @@
 <div class="inner-box">
 	<div class="div-relative">
 		<div class="add-button-container">
-			<md-button class="md-fab add-button-round" aria-label="Add category" ui-sref="dashboard.category">
+			<md-button class="md-fab add-button-round" 
+					   aria-label="Add category" 
+					   ui-sref="dashboard.category">
 				<md-tooltip md-direction="left">
 					Add category
+				</md-tooltip>
+				<md-icon class="material-icons">add</md-icon>
+			</md-button>
+			<md-button class="md-fab add-button-round"
+					   aria-label="Add category"
+					   ng-click="cb.delCategory(selected)">
+				<md-tooltip md-direction="left">
+					Delete
 				</md-tooltip>
 				<md-icon class="material-icons">add</md-icon>
 			</md-button>
@@ -16,18 +26,19 @@
 					   class="">
 					<thead md-head md-order="query.order" md-on-reorder="getCategories">
 						<tr md-row>
-							<th md-column md-numeric>Category name</th>
-							<th md-column md-numeric></th>
+							<th md-column>Category name</th>
+							<th md-column></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row md-select="category" md-select-id="name" ng-repeat="category in cb.getCategories()">
 							<td md-cell>{{category.name}}</td>
 							<td md-cell>
-								<md-button ng-click="edit(category)" class="md-icon-button" aria-label="Add product">
-									<md-icon class="fa fa-pencil">
+								<md-button ng-click="edit(category)" class="md-icon-button button-right" aria-label="Add product">
+									<md-icon class="material-icons icon-store">
+										edit
 										<md-tooltip md-direction="left">
-											Edit {{product.name}}
+											Edit {{category.name}}
 										</md-tooltip>
 									</md-icon>
 								</md-button>
@@ -36,7 +47,6 @@
 					</tbody>
 				</table>
 			</md-table-container>
-
 			<md-table-pagination 
 				md-limit="query.limit" 
 				md-limit-options="[10, 20, 30]" 

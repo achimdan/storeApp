@@ -46,6 +46,10 @@
             return category.data;
         };
 
+        factory.delCategory = function (selected) {
+            Categories.deleteCategory({id: selected[0].id}).then(successCallback,errorCallback);
+        };
+
         factory.getTotalElements = function () {
             return categories.data.totalElements;
         };
@@ -59,7 +63,6 @@
                 categories.fetching = true;
                 Categories.fetchCategories(query).then(successCallback,errorCallback);
             }
-
         };
 
         factory.fetchCategories = function () {
@@ -70,6 +73,11 @@
         factory.fetchCategory = function (id) {
             category.fetching = true;
             Categories.fetchCategory(id).then(successCallback,errorCallback);
+        };
+
+        factory.deleteCategory = function (id) {
+            category.fetching = true;
+            Categories.deleteCategory(id).then(successCallback,errorCallback);
         };
 
         factory.init = function (newMode) {

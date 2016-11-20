@@ -22,6 +22,11 @@
             return $http.get(urlCategory);
         };
 
+        factory.deleteCategory = function (id) {
+            var urlDelCategory = 'http://77.81.178.198:25001/onlineShop/categories/' + id;
+            return $http.delete(urlDelCategory);
+        };
+
         return factory;
 
     });

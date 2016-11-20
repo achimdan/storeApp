@@ -1,6 +1,6 @@
 <div class="inner-box">
     <form class="form-horizontal" 
-          name="addProductForm" 
+          name="productForm" 
           ng-submit="sendPost(formData)" 
           novalidate>
 
@@ -11,8 +11,8 @@
 			        		class="md-fab md-primary md-mini add-button-round save-green" 
 			        		aria-label="Add product" 
 			        		type="submit" 
-			        		ng-class="{isDisabled: addCategoryForm.$invalid}"
-			        		ng-disabled="addCategoryForm.$invalid">
+			        		ng-class="{isDisabled: productForm.$invalid}"
+			        		ng-disabled="productForm.$invalid">
 					    <md-tooltip md-direction="top">
 				          	Save
 				        </md-tooltip>
