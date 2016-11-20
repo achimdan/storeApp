@@ -43,7 +43,7 @@
                                 		class="form-control" 
                                 		id="categoryName" 
                                 		placeholder="Category Name"
-                                		ng-model="formData.name"
+                                		ng-model="cb.getCategory().name"
                                 		required/>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 <textarea 
                             			class="form-control" 
                             			rows="5" 
-                            			ng-model="formData.description"
+                            			ng-model="cb.getCategory().description"
                             			id="description">
                     			</textarea>
                             </div>
@@ -66,9 +66,9 @@
                             </label>
                             <div class="col-sm-10">
                         		<md-autocomplete 
-	                        		md-selected-item="formData.parentCategoryId" 
+	                        		md-selected-item="cb.getCategory().parentCategorySummary" 
 	                        		md-search-text="searchText" 
-	                        		md-items="item in getMatches(searchText)" 
+	                        		md-items="item in cb.getCategories(searchText)" 
 	                        		md-item-text="item.name" 
 	                        		md-min-length="0" 
 	                        		placeholder="Type something">

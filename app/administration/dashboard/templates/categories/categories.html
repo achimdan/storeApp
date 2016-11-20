@@ -10,19 +10,26 @@
 		</div>
 		<div>
 			<md-table-container class="table-main">
-				<table md-table md-row-select multiple ng-model="selected" md-progress="promise" class="main-table-small">
-					<thead md-head md-order="query.order" md-on-reorder="getDesserts">
+				<table md-table md-row-select multiple 
+					   ng-model="selected"
+					   md-progress="promise" 
+					   class="">
+					<thead md-head md-order="query.order" md-on-reorder="getCategories">
 						<tr md-row>
 							<th md-column md-numeric>Category name</th>
 							<th md-column md-numeric></th>
 						</tr>
 					</thead>
 					<tbody md-body>
-						<tr md-row md-select="dessert" md-select-id="name" ng-repeat="dessert in desserts">
-							<td md-cell>{{dessert.name}}</td>
+						<tr md-row md-select="category" md-select-id="name" ng-repeat="category in cb.getCategories()">
+							<td md-cell>{{category.name}}</td>
 							<td md-cell>
-								<md-button class="md-icon-button" aria-label="Add category">
-									<md-icon class="fa fa-pencil"></md-icon>
+								<md-button ng-click="edit(category)" class="md-icon-button" aria-label="Add product">
+									<md-icon class="fa fa-pencil">
+										<md-tooltip md-direction="left">
+											Edit {{product.name}}
+										</md-tooltip>
+									</md-icon>
 								</md-button>
 							</td>
 						</tr>
@@ -32,11 +39,12 @@
 
 			<md-table-pagination 
 				md-limit="query.limit" 
-				md-limit-options="[5, 10, 15]" 
+				md-limit-options="[10, 20, 30]" 
 				md-page="query.page" 
-				md-total="{{desserts.totalElements}}"
-				md-on-paginate="getDesserts" 
-				md-page-select="desserts.totalPages">
+				md-on-paginate="getPage" 
+				md-total="{{cb.getTotalElements()}}"
+				class="pagination-footer"
+				md-page-select="cb.getTotalPages()">
 			</md-table-pagination>
 		</div>
 	</div>

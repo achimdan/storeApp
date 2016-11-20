@@ -7,29 +7,36 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').controller('categoryController', function($scope,$http,$timeout,$q,$log) {
+    angular.module('administration').controller('categoryController', function($scope,$http,$timeout,$q,$log,$state,categoriesService) {
 
-        $scope.sendPost = function(formData) {
-            var url = 'http://77.81.178.198:25001/onlineShop/categories';
-
-            $http({
-              method: 'POST',
-              url: url,
-              data: {
-                'description': formData.description,
-                'metaDescription': formData.metaDescription,
-                'metaKeywords': formData.metaKeywords,
-                'metaTitle': formData.metaTitle,
-                'name': formData.name,
-                'parentCategoryId': formData.parentCategoryId ? formData.parentCategoryId.id : null
-              }
-            }).then(function successCallback(response) {
-                console.log(response);
-              }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-              });
+        categoriesService.fetchCategory($state.params.id);
+        $scope.cb = {
+            getCategory   : categoriesService.getCategory,
+            getCategories : categoriesService.getCategories
         };
+        
+        
+        // $scope.sendPost = function(formData) {
+        //     var url = 'http://77.81.178.198:25001/onlineShop/categories';
+
+        //     $http({
+        //       method: 'POST',
+        //       url: url,
+        //       data: {
+        //         'description': formData.description,
+        //         'metaDescription': formData.metaDescription,
+        //         'metaKeywords': formData.metaKeywords,
+        //         'metaTitle': formData.metaTitle,
+        //         'name': formData.name,
+        //         'parentCategoryId': formData.parentCategoryId ? formData.parentCategoryId.id : null
+        //       }
+        //     }).then(function successCallback(response) {
+        //         console.log(response);
+        //       }, function errorCallback(response) {
+        //         // called asynchronously if an error occurs
+        //         // or server returns response with an error status.
+        //       });
+        // };
 
         var get = function () {
             var url = 'http://77.81.178.198:25001/onlineShop/categories';

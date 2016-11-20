@@ -17,7 +17,7 @@
         .state('dashboard.categories', {
             url: '/categories',
             templateUrl: 'administration/dashboard/templates/categories/categories.html',
-            controller: 'categoriesCtrl',
+            controller: 'categoriesController',
             ncyBreadcrumb: {
                 label: 'Categories'
             }
