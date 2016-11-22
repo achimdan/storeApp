@@ -337,6 +337,14 @@
 	            <md-tab label="Image">
 	                <md-content class="md-padding content-md">
                         <div>
+                            <ul>
+                                <li ng-repeat="picture in cb.productImages()">
+                                    {{picture.name}}
+                                    {{b.addToProduct().theFiles}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
 	                        <md-button class="md-raised" ng-click="showDialog()">Launch Modal</md-button>
                         </div>
 	                </md-content>

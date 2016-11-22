@@ -24,6 +24,12 @@
                 checked: false,
                 data: {}
             },
+            images = {
+                loaded: false,
+                fetching: false,
+                checked: false,
+                data: {}
+            },
             formData = {
                 data: {}
             };
@@ -128,6 +134,25 @@
             fileManager.upload(successUpload,errorUpload);
         };
 
+        factory.addToProduct = function () {
+            var theFiles = [];
+            _.forEach(files.data.files, function(each) {
+                _.forEach(each.checked, function(eachCheck,index) {
+                    if (eachCheck === true) {
+                        theFiles.push(each);
+                    }
+                });
+                // fileManager.delete(data).then(successDelete,errorDelete);
+            });
+            
+            images.data = theFiles;
+            console.log('each',images.data);
+        };
+
+        factory.productImages = function () {
+            return images.data;
+        };
+
         // $scope.delete = function(formData) {
         //     console.log($scope.formData.checked[0]);
         //     var files = [];
@@ -154,6 +179,12 @@
                 data: {}
             };
             theFile = {
+                loaded: false,
+                fetching: false,
+                checked: false,
+                data: {}
+            };
+            images = {
                 loaded: false,
                 fetching: false,
                 checked: false,

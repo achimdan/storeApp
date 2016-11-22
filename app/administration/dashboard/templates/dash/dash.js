@@ -8,9 +8,16 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('administration').controller('dashCtrl', function($scope) {
+    angular.module('administration')
+    .controller('dashCtrl', function ($scope, $timeout, $mdSidenav) {
+    $scope.toggleLeft = buildToggler('left');
+    $scope.toggleRight = buildToggler('right');
 
-        //TODO: Implement your controller logic here
-    });
+    function buildToggler(componentId) {
+      return function() {
+        $mdSidenav(componentId).toggle();
+      }
+    };
+  });
 
 })();

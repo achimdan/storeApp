@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
     angular.module('administration')
-    .controller('FileManagerController', function($scope, $mdDialog, $http, fileManagerService) {
+    .controller('FileManagerController', function($scope, $mdDialog, $http, fileManagerService, $state) {
         
         fileManagerService.fetchFiles();
         $scope.cb = {
@@ -16,12 +16,19 @@
             loadFolder      : fileManagerService.loadFolder,
             parentDirectory : fileManagerService.parentDirectory,
             delete          : fileManagerService.delete,
-            upload          : fileManagerService.upload
+            upload          : fileManagerService.upload,
+            productImages   : fileManagerService.productImages,
+            addToProduct    : fileManagerService.addToProduct
         };
 
         $scope.$watch('files.length',function(newVal,oldVal){
             console.log($scope.files);
         });
+
+        $scope.addToProduct = function (file) {
+            // console.log(file);
+            // console.log($state.params.id);
+        };
         
 
         // var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',

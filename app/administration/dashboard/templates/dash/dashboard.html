@@ -13,7 +13,7 @@
 		</md-button>
 	</div>
 </md-toolbar>
-<aside class="sidebar-container">
+<!--<aside class="sidebar-container">
 	<nav>
 	    <ul class="nav nav-store">
 		    <li>
@@ -77,11 +77,206 @@
 				</a>
 			</li>
 		</ul>
-	</nav>
-</aside>
-<div class="main-container">
-	<div class="breadcrumbs">
-		<div ncy-breadcrumb></div>
-	</div>
-	<div ui-view></div>
+	</nav> lifeLike
+</aside>-->
+
+
+<div class="wrapper" ng-cloak="" >
+
+  <section class="section" layout="row" flex="">
+
+    <md-sidenav
+        class="md-sidenav-left sidebar-container"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="4">
+<!--
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+      </md-toolbar>-->
+
+      <md-content>
+        <nav>
+			<ul class="nav nav-store">
+				<li>
+					<a href="/app/#/home" id="home" md-button>
+						<i class="fa fa-home" aria-hidden="true"></i>
+						Home
+					</a>
+				</li>
+				<li>
+					<a  
+						href 
+						id="btn-1" 
+						data-toggle="collapse" 
+						data-target="#submenu1" 
+						aria-expanded="false"
+						md-button>
+						<i class="fa fa-tags" aria-hidden="true"></i>
+						Catalog
+					</a>
+					<ul 
+						class="nav collapse" 
+						id="submenu1" 
+						role="menu" 
+						aria-labelledby="btn-1"> 
+						<li>
+							<a ui-sref="dashboard.categories" md-button>Categories</a>
+						</li>
+						<li>
+							<a ui-sref="dashboard.products" md-button>Products</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a  
+						href="#" 
+						id="btn-2" 
+						data-toggle="collapse" 
+						data-target="#submenu2" 
+						aria-expanded="false"
+						md-button>
+						<i class="fa fa-cog" aria-hidden="true"></i>
+						System
+					</a>
+					<ul 
+						class="nav collapse" 
+						id="submenu2" 
+						role="menu" 
+						aria-labelledby="btn-2">
+						<li>
+							<a href="#" md-button>Settings</a>
+						</li>
+						<li>
+							<a href="#" md-button>Users</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" md-button>
+						<i class="fa fa-bar-chart" aria-hidden="true"></i>
+						Reports
+					</a>
+				</li>
+			</ul>
+		</nav>
+        <md-button ng-click="toggleLeft()" class="md-accent">
+          Close this Sidenav
+        </md-button>
+      </md-content>
+
+    </md-sidenav>
+
+    <md-content flex="">
+
+      <div layout="column" layout-align="top center">
+		<div class="main-container">  	
+			<div class="breadcrumbs">
+				<div ncy-breadcrumb></div>
+			</div>
+			<div ui-view></div>
+
+        <div>
+          <md-button ng-click="toggleLeft()" class="md-raised">
+            Toggle Sidenav
+          </md-button>
+        </div>
+		</div>
+      </div>
+
+    </md-content>
+
+  </section>
+
 </div>
+
+
+<!--<div layout="column" ng-cloak="" class="sidenavdemoCustomSidenav">
+	<section layout="row" flex="">
+
+		<md-sidenav class="md-sidenav-left aside-sideabr" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+			<md-content layout-margin="">
+				<nav>
+					<ul class="nav nav-store">
+						<li>
+							<a href="/app/#/home" id="home" md-button>
+								<i class="fa fa-home" aria-hidden="true"></i>
+								Home
+							</a>
+						</li>
+						<li>
+							<a  
+								href 
+								id="btn-1" 
+								data-toggle="collapse" 
+								data-target="#submenu1" 
+								aria-expanded="false"
+								md-button>
+								<i class="fa fa-tags" aria-hidden="true"></i>
+								Catalog
+							</a>
+							<ul 
+								class="nav collapse" 
+								id="submenu1" 
+								role="menu" 
+								aria-labelledby="btn-1"> 
+								<li>
+									<a ui-sref="dashboard.categories" md-button>Categories</a>
+								</li>
+								<li>
+									<a ui-sref="dashboard.products" md-button>Products</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a  
+								href="#" 
+								id="btn-2" 
+								data-toggle="collapse" 
+								data-target="#submenu2" 
+								aria-expanded="false"
+								md-button>
+								<i class="fa fa-cog" aria-hidden="true"></i>
+								System
+							</a>
+							<ul 
+								class="nav collapse" 
+								id="submenu2" 
+								role="menu" 
+								aria-labelledby="btn-2">
+								<li>
+									<a href="#" md-button>Settings</a>
+								</li>
+								<li>
+									<a href="#" md-button>Users</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" md-button>
+								<i class="fa fa-bar-chart" aria-hidden="true"></i>
+								Reports
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<md-button ng-click="toggleLeft()" class="md-accent">
+				Close this Sidenav
+				</md-button>
+			</md-content>
+		</md-sidenav>
+		
+		<md-content flex="" layout-padding="">
+		<div class="main-container">
+			<md-button ng-click="toggleLeft()" class="md-raised">
+					Toggle Sidenav
+				</md-button>
+
+			<div class="breadcrumbs">
+				<div ncy-breadcrumb></div>
+			</div>
+			<div ui-view></div>
+		</div>
+		</md-content>
+	</section>
+</div>-->
