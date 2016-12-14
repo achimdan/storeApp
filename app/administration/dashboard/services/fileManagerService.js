@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
     angular.module('administration')
-    .factory('fileManagerService', function($injector, $http, $q) {
+    .factory('fileManagerService', function($injector, $http, $q, $mdDialog) {
 
         var factory = {},
             fileManager = $injector.get('fileManager'),
@@ -146,6 +146,7 @@
             });
             
             images.data = theFiles;
+            $mdDialog.hide(images.data);
             console.log('each',images.data);
         };
 

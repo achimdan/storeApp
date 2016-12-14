@@ -34,7 +34,6 @@
 	        <md-tabs md-dynamic-height md-border-bottom>
 	            <md-tab label="General">
 	                <md-content class="md-padding content-md">
-
                         <md-input-container class="col-md-12 input-container">
                             <label>Product Name</label>
                             <input class="input-line" 
@@ -337,15 +336,65 @@
 	            <md-tab label="Image">
 	                <md-content class="md-padding content-md">
                         <div>
-                            <ul>
-                                <li ng-repeat="picture in cb.productImages()">
-                                    {{picture.name}}
-                                    {{b.addToProduct().theFiles}}
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-	                        <md-button class="md-raised" ng-click="showDialog()">Launch Modal</md-button>
+                            <md-table-container class="table-main">
+                                <table md-table md-row-select multiple 
+                                    ng-model="selected"
+                                    md-progress="promise" 
+                                    class="">
+                                    <thead md-head md-order="query.order" md-on-reorder="getCategories">
+                                        <tr md-row>
+                                            <th md-column>Images</th>
+                                            <th md-column></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row md-select="category" md-select-id="name" 
+                                            ng-repeat="personalDetail in personalDetails track by $index">
+                                            <td md-cell>
+                                                <md-button 
+                                                    ng-if="!personalDetail.src"
+                                                    ng-click="showDialog($index)" 
+                                                    class="md-icon-button button-left" 
+                                                    aria-label="Add image">
+                                                    <md-icon class="material-icons icon-store">
+                                                        add_a_photo
+                                                        <md-tooltip md-direction="right">
+                                                            Add a image
+                                                        </md-tooltip>
+                                                    </md-icon>
+                                                </md-button>
+                                                <img ng-click="showDialog($index)" src="http://77.81.178.198:25001/onlineShop/{{personalDetail.src}}" alt="">
+                                                <md-button 
+                                                    ng-click="remove($index)" 
+                                                    class="md-icon-button button-right" 
+                                                    aria-label="Add product">
+                                                    <md-icon class="material-icons icon-store">
+                                                        indeterminate_check_box
+                                                        <md-tooltip md-direction="left">
+                                                            Remove {{personalDetail.name}}
+                                                        </md-tooltip>
+                                                    </md-icon>
+                                                </md-button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td md-cell>
+                                                <md-button 
+                                                    ng-click="addNew()" 
+                                                    class="md-icon-button button-right" 
+                                                    aria-label="Add product">
+                                                    <md-icon class="material-icons icon-store">
+                                                        add_box
+                                                        <md-tooltip md-direction="left">
+                                                            Remove {{personalDetail.name}}
+                                                        </md-tooltip>
+                                                    </md-icon>
+                                                </md-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
                         </div>
 	                </md-content>
 	            </md-tab>

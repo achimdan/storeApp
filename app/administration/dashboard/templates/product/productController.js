@@ -8,13 +8,35 @@
      * @author: Achim Dan
      */
     angular.module('administration').controller('productController', 
-    function($scope,$http,$timeout,$q,$log,$mdDialog,$state,productsService) {
+    function($scope,$http,$timeout,$q,$log,$mdDialog,$state,productsService,fileManagerService) {
 
         productsService.fetchProduct($state.params.id);
         $scope.cb = {
-            getProduct : productsService.getProduct
+            getProduct       : productsService.getProduct,
+            imageFromManager : productsService.imageFromManager,
+            productImages    :fileManagerService.productImages
         };
 
+        $scope.$watch('cb', function() {
+            // do something here
+            // $scope.count += 1;
+            console.log('productImage',$scope.cb.productImage);
+        }, true);
+
+
+        var srcImage = {};
+
+        // $scope.$watch('files.length',function(newVal,oldVal){
+        //     console.log('$scope.files',$scope.files);
+        // });
+
+        // $scope.$on('BOOM!', function (events, args ){
+        //     // $scope.name = args;
+        //     srcImage = $scope.productImage;
+        //     console.log('args',$scope.productImage);
+        //     console.log('args',args);
+
+        // });
 
         var successCallback = function (success) {
             console.log(success);
@@ -32,42 +54,42 @@
         //     $http.get().$promise.then(successCallback,errorcallback);
         // };
 
-        $scope.sendPost = function(formData) {
-            var url = 'http://77.81.178.198:25001/onlineShop/products';
+        // $scope.sendPost = function(formData) {
+        //     var url = 'http://77.81.178.198:25001/onlineShop/products';
 
-            $http({
-              method: 'POST',
-              url: url,
-              data: {
-                    "categories": [
-                        {
-                            "id": formData.categories.id,
-                            "name": formData.categories.name
-                        }
-                    ],
-                    "description": formData.description,
-                    "dimensionH": formData.dimensionH,
-                    "dimensionL": formData.dimensionL,
-                    "dimensionW": formData.dimensionW,
-                    "id": formData.id,
-                    "manufacturer": formData.manufacturer,
-                    "metaDescription": formData.metaDescription,
-                    "metaKeywords": formData.metaKeywords,
-                    "metaTitle": formData.metaTitle,
-                    "model": formData.model,
-                    "name": formData.name,
-                    "price": formData.price,
-                    "quantity": formData.quantity,
-                    "shipping": formData.shipping,
-                    "stockStatus": "OUT_OF_STOCK",
-                    "weight": formData.weight
-                }
-            }).then(function successCallback(response) {
-                console.log(response);
-              }, function errorCallback(response) {
-                  consle.log(response);
-              });
-        };
+        //     $http({
+        //       method: 'POST',
+        //       url: url,
+        //       data: {
+        //             "categories": [
+        //                 {
+        //                     "id": formData.categories.id,
+        //                     "name": formData.categories.name
+        //                 }
+        //             ],
+        //             "description": formData.description,
+        //             "dimensionH": formData.dimensionH,
+        //             "dimensionL": formData.dimensionL,
+        //             "dimensionW": formData.dimensionW,
+        //             "id": formData.id,
+        //             "manufacturer": formData.manufacturer,
+        //             "metaDescription": formData.metaDescription,
+        //             "metaKeywords": formData.metaKeywords,
+        //             "metaTitle": formData.metaTitle,
+        //             "model": formData.model,
+        //             "name": formData.name,
+        //             "price": formData.price,
+        //             "quantity": formData.quantity,
+        //             "shipping": formData.shipping,
+        //             "stockStatus": "OUT_OF_STOCK",
+        //             "weight": formData.weight
+        //         }
+        //     }).then(function successCallback(response) {
+        //         console.log(response);
+        //       }, function errorCallback(response) {
+        //           consle.log(response);
+        //       });
+        // };
 
         var get = function () {
             var url = 'http://77.81.178.198:25001/onlineShop/categories';
@@ -103,11 +125,13 @@
         ];
 
         $scope.usersModel = {};
+        var poz = {};
 
-        $scope.showDialog = function(evt, dlg) {
-           $mdDialog.show({
+        $scope.showDialog = function(index) {
+            poz = index;
+            $mdDialog.show({
                parent: angular.element(document.body),
-               targetEvent: evt,
+               targetEvent: index,
                // manually apply focus to the autocomplete control in the dialog
                // (otherwise, the dialog forces focus to the OK button)
                focusOnOpen: true,
@@ -115,11 +139,27 @@
                controller: 'FileManagerController'
            }).then(
            function success (screenData) {
-               // hit OK
+                console.log('screenData',screenData);
+                $scope.personalDetails.splice($scope.personalDetails.length - 1,1);
+                _.forEach(screenData,function(each){
+                    $scope.personalDetails.push(each);
+                });
            },
            function failure () {
                // canceled
            });
+        };
+
+        $scope.personalDetails = [];
+
+        $scope.addNew = function () {
+            $scope.personalDetails.push({
+                'img':''
+            });
+        };
+
+        $scope.remove = function(index){
+            $scope.personalDetails.splice(index,1);
         };
 
     });

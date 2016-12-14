@@ -1,71 +1,75 @@
 <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>FileManager</h2>
+    <div class="md-toolbar-tools">
+        <h2>Image Manager</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        <input type="text">
+        <md-button class="btn btn1" id="btn-cancel" ng-click="cb.parentDirectory()">
+            <md-icon class="material-icons icon-upload">arrow_upward</md-icon>
+            <md-tooltip md-direction="top">
+                Parent
+            </md-tooltip>
         </md-button>
-      </div>
-    </md-toolbar>
+        <md-button class="btn btn1" id="btn-cancel" ng-click="cb.uploadFiles()">
+            <md-icon class="material-icons icon-upload">file_upload</md-icon>
+            <md-tooltip md-direction="top">
+                Upload
+            </md-tooltip>
+        </md-button>
+        <md-button id="btn-parent" ng-click="cb.uploadFiles()" class="btn btn1">
+            <md-icon class="material-icons icon-upload">folder</md-icon>
+            <md-tooltip md-direction="top">
+                New Folder
+            </md-tooltip>
+        </md-button>
+
+
+        <!--<md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>-->
+        
+    </div>
+</md-toolbar>
 <md-dialog-content>
-      <div class="md-dialog-content">
-<md-button id="btn-cancel" ng-click="cb.uploadFiles()" class="md-accent">Upload</md-button>
-
-<lf-ng-md-file-input lf-files="files01" lf-api="api01" ng-disabled="disabled01"></lf-ng-md-file-input>
-<md-button class="md-raised md-warn" ng-click="api01.removeAll()">remove all file outside</md-button>
-<md-checkbox ng-model="disabled01" aria-label="disabled01">
-    Disable
-</md-checkbox>
-<!--<lf-ng-md-file-input lf-files="filesProgress" multiple progress></lf-ng-md-file-input>-->
-
-<br>
-    <md-menu ng-repeat="file in cb.getFiles()" >
-        <md-button 
-            class="col-md-2 wrap-file" 
-            aria-label="Open phone interactions menu" 
-            ng-click="addToProduct(file)"
-            multiple ng-multiple="true"
-            ng-dblclick="cb.loadFolder(file)"
-            ng-right-click="$mdOpenMenu($event)">
+    <div class="md-dialog-content">
+        <md-menu ng-repeat="file in cb.getFiles()">
+            <md-button class="col-md-2 wrap-file" aria-label="Open phone interactions menu" ng-click="addToProduct(file)" multiple ng-multiple="true"
+                ng-dblclick="cb.loadFolder(file)" ng-right-click="$mdOpenMenu($event)">
                 <div class="file-image">
                     <img src="http://77.81.178.198:25001/onlineShop/{{file.src}}" alt=""><br>
                 </div>
-                <md-checkbox 
-                    class="label-checkbox"
-                    ng-model="file.checked[$index]"
-                    aria-label="Checkbox 1">
+                <md-checkbox class="label-checkbox" ng-model="file.checked[$index]" aria-label="Checkbox 1">
                     {{file.name}}
                 </md-checkbox>
-        </md-button>
-        <md-menu-content width="4">
-            <md-menu-item>
-                <md-button ng-click="cb.loadFolder(file)">
-                    Open
-                </md-button>
-            </md-menu-item>
-            <md-menu-item>
-                <md-button ng-click="ctrl.redial($event)">
-                    Rename
-                </md-button>
-            </md-menu-item>
-            <md-menu-item>
-                <md-button ng-click="cb.delete()">
-                    Delete
-                </md-button>
-            </md-menu-item>
-            <md-menu-item>
-                <md-button ng-click="cb.addToProduct(file)">
-                    Save
-                </md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-click="cb.loadFolder(file)">
+                        Open
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="ctrl.redial($event)">
+                        Rename
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="cb.delete()">
+                        Delete
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="cb.addToProduct(file)">
+                    <!--<md-button ng-click="save(file,$index)">-->
+                        Save
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
 
-      </div>
+    </div>
 </md-dialog-content>
 
 <md-dialog-actions layout="row">
-    <md-button id="btn-cancel" ng-click="cb.parentDirectory()" class="md-accent">Back</md-button>
     <md-button id="btn-save" ng-click="save()" class="md-primary">Save</md-button>
     <md-button id="btn-cancel" ng-click="cancel()" class="md-accent">Cancel</md-button>
 </md-dialog-actions>

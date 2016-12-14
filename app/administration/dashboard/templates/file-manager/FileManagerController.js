@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
     angular.module('administration')
-    .controller('FileManagerController', function($scope, $mdDialog, $http, fileManagerService, $state) {
+    .controller('FileManagerController', function($scope, $rootScope, $mdDialog, $http, $state, fileManagerService, productsService) {
         
         fileManagerService.fetchFiles();
         $scope.cb = {
@@ -21,16 +21,23 @@
             addToProduct    : fileManagerService.addToProduct
         };
 
-        $scope.$watch('files.length',function(newVal,oldVal){
-            console.log($scope.files);
-        });
 
-        $scope.addToProduct = function (file) {
-            // console.log(file);
-            // console.log($state.params.id);
-        };
+        // $scope.addToProduct = function (file) {
+        //     console.log(file);
+        //     // console.log($state.params.id);
+        // };
         
 
+        $scope.save = function(file,index) {
+            productsService.imageProduct(file);
+            // console.log('XXXXXXXX',productsService.imageProduct(file));
+            // $rootScope.$broadcast('BOOM!', file);
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function(data) {
+            $mdDialog.hide();
+        };
         // var url = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory',
         //     urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder',
         //     urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory',
@@ -104,9 +111,6 @@
         //     }
         // };
 
-        // $scope.save = function() {
-        //     $mdDialog.hide();
-        // };
         // $scope.cancel = function() {
         //     $mdDialog.cancel();
         // };

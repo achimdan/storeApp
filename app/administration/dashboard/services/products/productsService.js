@@ -21,6 +21,11 @@
                 fetching: true,
                 data: {}
             },
+            image = {
+                loaded: false,
+                fetching: true,
+                data: {}
+            },
             query = {
                 order: 'name',
                 limit: 10,
@@ -58,7 +63,6 @@
                 products.fetching = true;
                 Products.fetchProducts(query).then(successCallback,errorCallback);
             }
-
         };
 
         factory.fetchProducts = function () {
@@ -71,6 +75,15 @@
             Products.fetchProduct(id).then(successCallback,errorCallback);
         };
 
+        factory.imageProduct = function (image) {
+            // image.data.push(images);
+            image.data = image;
+        };
+
+        factory.imageFromManager = function () {
+            return image.data;
+        }
+
         factory.init = function (newMode) {
             products = {
                 loaded: false,
@@ -78,6 +91,11 @@
                 data: {}
             };
             product = {
+                loaded: false,
+                fetching: true,
+                data: {}
+            };
+            image = {
                 loaded: false,
                 fetching: true,
                 data: {}
