@@ -12,15 +12,15 @@
     
     angular.module('home').config(function($stateProvider) {
 
-        $stateProvider.state('home-template', {
+        $stateProvider.state('home', {
             url: '/home',
             templateUrl: 'home/templates/home-template.html',
             controller: 'homeCtrl'
         });
-        $stateProvider.state('dashboard', {
-            url: '/administration',
-            templateUrl: 'administration/dashboard/templates/dash/dashboard.html',
-            controller: 'dashCtrl',
+        $stateProvider.state('home.category', {
+            url: '/category/:id',
+            templateUrl: 'home/category/templates/category.html',
+            controller: 'homeCategoryController',
             ncyBreadcrumb: {
                 label: 'Home'
             }

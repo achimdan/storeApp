@@ -12,6 +12,15 @@
     
     angular.module('administration').config(function($stateProvider) {
 
+        $stateProvider.state('dashboard', {
+            url: '/administration',
+            templateUrl: 'administration/dashboard/templates/dash/dashboard.html',
+            controller: 'dashCtrl',
+            ncyBreadcrumb: {
+                label: 'Home'
+            }
+        });
+        
         // Category route
         $stateProvider
         .state('dashboard.categories', {

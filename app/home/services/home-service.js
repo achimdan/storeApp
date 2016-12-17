@@ -8,17 +8,19 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('home').service('homeService', function($http, $q) {
+    angular.module('home').factory('homeService', function($http, $q) {
+        // var factory = {};
+        // var message = '';
 
-        var message = '';
+        // this.getMessage = function(){
+        //     if(message === ''){
+        //         message = 'Congratulations! Your app is fully up and running.';
+        //     }
 
-        this.getMessage = function(){
-            if(message === ''){
-                message = 'Congratulations! Your app is fully up and running.';
-            }
+        //     return message;
+        // };
 
-            return message;
-        };
+        // return factory;
 
     });
 

@@ -8,10 +8,21 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('home').controller('homeCtrl', function($scope, homeService) {
+    angular.module('home').controller('homeCtrl', function($scope, $http, $state) {
 
         // get message from service
-        $scope.message = homeService.getMessage();
+        // $scope.message = homeService.getMessage();
+
+        $scope.currentNavItem = 'page1';
+
+        var getNavigation = function () {
+            var urlNavigation = 'http://77.81.178.198:25001/onlineShop/home/navigation';
+            $http.get(urlNavigation).then(function(success){
+                console.log('NAV success',success.data);
+                $scope.categoryNav = success.data;
+            });
+        };
+        getNavigation();
 
     });
 

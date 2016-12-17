@@ -1,7 +1,50 @@
 <div class="container">
-	<h1 class="text-success"> {{ message }} </h1>
-	<br/>
-	<p class="text-justify">Anitech Consulting Services Pvt Ltd. is an innovative software development and information technology(IT) consulting service provider with offshore development center in Hyderabad, India. We provide offshore outsourcing solutions to enterprises worldwide. Combining proven expertise in technology, and an understanding of emerging business domains, Anitech delivers a range of outsourcing services that includes Enterprise Product Suites, Custom Application Development, ERP Solution, Mobile Application Development, Multimedia Design and IT Consulting Services. We have specialized software expertise to help your business operate more efficiently respond to customers, secure sensitive information, manage growth and control costs.</p>
-	<br/>
-    <p><a class="btn btn-lg btn-success" href="http://www.anitechcs.com" role="button">Visit Anitech Now!</a></p>
+	<div class="col-md-12">
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-left">
+				<li class="dropdown" ng-repeat="button in categoryNav"> 
+					<!--<a class="dropdown-toggle" -->
+					<a ui-sref="home.category({id: button.id})"
+					data-toggle="dropdown">
+						<span ng-bind="button.name"></span>
+						<b class="caret" ng-if="!button.subCategoryProductsCount.length == 0"></b>
+					</a>
+					<ul class="dropdown-menu" ng-if="!button.subCategoryProductsCount.length == 0">
+						<li ng-repeat="subButton in button.subCategoryProductsCount">
+							<a ui-sref="home.category({id: subButton.categoryId})">
+							{{subButton.categoryName}} ({{subButton.numberOfProducts}})
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div>
+			<ul>
+				<li><h3>Categories</h3></li>
+				<li>Cat1</li>
+				<li>Cat2</li>
+				<li>Cat23</li>
+				<li><h3>Manufactures</h3></li>
+				<li>Man1</li>
+				<li>Man2</li>
+				<li>
+					<h3>Manufactures</h3>
+					
+					<rzslider 
+						rz-slider-model="1" 
+						rz-slider-high="100" 
+						rz-slider-options="minRangeSlider.options">
+					</rzslider>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col-md-10">
+		<div ui-view></div>
+	</div>
 </div>
