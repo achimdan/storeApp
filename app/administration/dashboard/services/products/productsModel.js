@@ -7,7 +7,7 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').factory('Products', function($http, $q) {
+    angular.module('administration').factory('Products', function($http, $q, $state) {
 
         var factory = {};
         
@@ -19,6 +19,19 @@
         factory.fetchProduct = function (id) {
             var urlProduct = 'http://77.81.178.198:25001/onlineShop/products/' + id;
             return $http.get(urlProduct);
+        };
+
+        factory.addProduct = function (formData) {
+            var addProductUrl;
+
+            if ($state.params.id) {
+                addProductUrl = 'http://77.81.178.198:25001/onlineShop/products/' + $state.params.id;
+                return $http.put(addProductUrl,formData);
+            } else {
+                addProductUrl = 'http://77.81.178.198:25001/onlineShop/products';
+                return $http.post(addProductUrl,formData);
+            }
+
         };
 
         return factory;

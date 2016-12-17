@@ -12,7 +12,9 @@
 			        		aria-label="Add product" 
 			        		type="submit" 
 			        		ng-class="{isDisabled: productForm.$invalid}"
+                            ng-click="cb.addProduct(cb.getProduct())"
 			        		ng-disabled="productForm.$invalid">
+                            <!--ng-click="submit(cb.getProduct())"-->
 					    <md-tooltip md-direction="top">
 				          	Save
 				        </md-tooltip>
@@ -34,7 +36,7 @@
 	        <md-tabs md-dynamic-height md-border-bottom>
 	            <md-tab label="General">
 	                <md-content class="md-padding content-md">
-                        <md-input-container class="col-md-12 input-container">
+                        <!--<md-input-container class="col-md-12 input-container">
                             <label>Product Name</label>
                             <input class="input-line" 
                                    ng-model="cb.getProduct().name" 
@@ -42,7 +44,6 @@
                                    required>
                             <div ng-messages="addProductForm.name.$error">
                                 <div ng-message="required">This is required.</div>
-                                <!--<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>-->
                             </div>
                         </md-input-container>
                         <md-input-container class="col-md-12 input-container">
@@ -56,21 +57,21 @@
                         <md-input-container class="col-md-12 input-container">
                             <label>Quantity</label>
                             <input class="input-line" ng-model="cb.getProduct().quantity">
-                        </md-input-container>
-                        <md-input-container class="col-md-12 input-container">
+                        </md-input-container>-->
+                        <!--<md-input-container class="col-md-12 input-container">
                             <label>Stock Status</label>
                             <md-icon class="material-icons">assignment</md-icon>
                             <input class="input-line" ng-model="cb.getProduct().stockStatus">
-                            <!--<md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
+                            <md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
                                 <md-option 
                                     ng-value="stock" 
                                     ng-repeat="stock in stocks">
                                     <span ng-bind="user.name"></span>
                                 </md-option>
-                            </md-select>-->
-                        </md-input-container>
+                            </md-select>
+                        </md-input-container>-->
                         
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label for="categoryName" class="col-sm-2 control-label">
                                 Product Name
                             </label>
@@ -83,8 +84,8 @@
                                 		ng-model="cb.getProduct().name"
                                 		required/>
                             </div>
-                        </div>-->
-                        <!--<div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="categoryModel" class="col-sm-2 control-label">
                                 Model
                             </label>
@@ -97,8 +98,8 @@
                                 		ng-model="cb.getProduct().model"
                                 		required/>
                             </div>
-                        </div>-->
-                        <!--<div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="categoryPrice" class="col-sm-2 control-label">
                                 Price
                             </label>
@@ -111,8 +112,8 @@
                                 		ng-model="cb.getProduct().price"
                                 		required/>
                             </div>
-                        </div>-->
-                        <!--<div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="categoryQuantity" class="col-sm-2 control-label">
                                 Quantity
                             </label>
@@ -125,28 +126,28 @@
                                 		ng-model="cb.getProduct().quantity"
                                 		required/>
                             </div>
-                        </div>-->
-                        <!--<div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="stockStatus" class="col-sm-2 control-label">
                                 Out Of Stock
                             </label>
                             <div class="col-sm-10">
-                                <input 
+                                <!--<input 
                                     type="text" 
                                     class="form-control" 
                                     id="stockStatus" 
                                     placeholder="Out of Stock"
                                     ng-model="cb.getProduct().stockStatus"
-                                    required/>
+                                    required/>-->
                                 <md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
                                     <md-option 
-                                        ng-value="stock" 
+                                        ng-value="stockStatus" 
                                         ng-repeat="stock in stocks">
-                                        <span ng-bind="user.name"></span>
+                                        <span ng-bind="cb.getProduct().stockStatus"></span>
                                     </md-option>
                                 </md-select>
                             </div>
-                        </div>-->
+                        </div>
                         <div class="form-group">
                             <label for="shipping" class="col-sm-2 control-label">
                                 Transportation?
@@ -159,7 +160,7 @@
                             </div>
                         </div>
 
-                        <md-input-container class="col-md-3 input-container">
+                        <!--<md-input-container class="col-md-3 input-container">
                             <label>Length</label>
                             <input class="input-line" ng-model="cb.getProduct().dimensionL" required required>
                         </md-input-container>
@@ -175,9 +176,9 @@
                         <md-input-container class="col-md-3 input-container">
                             <label>Weight</label>
                             <input class="input-line" ng-model="cb.getProduct().weight">
-                        </md-input-container>
+                        </md-input-container>-->
 
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label for="" class="col-sm-2 control-label">
                                 Dimensiuni
                             </label>
@@ -212,8 +213,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>-->
-                        <!--<div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="weight" class="col-sm-2 control-label">
                                 Weight
                             </label>
@@ -226,7 +227,7 @@
                                 		ng-model="cb.getProduct().weight"
                                 		required/>
                             </div>
-                        </div>-->
+                        </div>
                         <div class="form-group">
                             <label for="description" class="col-sm-2 control-label">
                             	Description
@@ -349,11 +350,12 @@
                                     </thead>
                                     <tbody md-body>
                                         <tr md-row md-select="category" md-select-id="name" 
-                                            ng-repeat="personalDetail in personalDetails track by $index">
+                                            ng-repeat="personalDetail in cb.getProduct().images track by $index">
+                                            <!--ng-repeat="personalDetail in personalDetails track by $index">-->
                                             <td md-cell>
                                                 <md-button 
                                                     ng-if="!personalDetail.src"
-                                                    ng-click="showDialog($index)" 
+                                                    ng-click="cb.showDialog($index)" 
                                                     class="md-icon-button button-left" 
                                                     aria-label="Add image">
                                                     <md-icon class="material-icons icon-store">
@@ -386,7 +388,7 @@
                                                     <md-icon class="material-icons icon-store">
                                                         add_box
                                                         <md-tooltip md-direction="left">
-                                                            Remove {{personalDetail.name}}
+                                                            Add {{personalDetail.name}}
                                                         </md-tooltip>
                                                     </md-icon>
                                                 </md-button>

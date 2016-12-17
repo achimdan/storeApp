@@ -98,13 +98,13 @@
       <md-content>
         <nav>
 			<ul class="nav nav-store">
-				<li>
+				<li ng-class="{ active: isActive(state)}">
 					<a href="/app/#/home" id="home" md-button>
 						<i class="fa fa-home" aria-hidden="true"></i>
 						Home
 					</a>
 				</li>
-				<li>
+				<li ng-class="{ active: isActive(state)}">
 					<a  
 						href 
 						id="btn-1" 
@@ -120,10 +120,10 @@
 						id="submenu1" 
 						role="menu" 
 						aria-labelledby="btn-1"> 
-						<li>
+						<li ng-class="{ active: isActive(state)}">
 							<a ui-sref="dashboard.categories" md-button>Categories</a>
 						</li>
-						<li>
+						<li ng-class="{ active: isActive(state)}">
 							<a ui-sref="dashboard.products" md-button>Products</a>
 						</li>
 					</ul>

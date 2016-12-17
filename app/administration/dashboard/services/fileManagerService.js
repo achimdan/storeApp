@@ -147,7 +147,6 @@
             
             images.data = theFiles;
             $mdDialog.hide(images.data);
-            console.log('each',images.data);
         };
 
         factory.productImages = function () {

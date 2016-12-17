@@ -7,7 +7,7 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').factory('productsService', function($http, $q, $injector) {
+    angular.module('administration').factory('productsService', function($http, $q, $injector, $mdDialog) {
 
         var factory = {},
             Products = $injector.get('Products'),
@@ -17,6 +17,11 @@
                 data: {}
             },
             product = {
+                loaded: false,
+                fetching: true,
+                data: {}
+            },
+            addProduct = {
                 loaded: false,
                 fetching: true,
                 data: {}
@@ -33,7 +38,6 @@
             };
 
         var successCallback = function (success) {
-            console.log(success.data);
             products.data = success.data;
             product.data = success.data;
         };
@@ -82,7 +86,29 @@
 
         factory.imageFromManager = function () {
             return image.data;
-        }
+        };
+
+        factory.addProduct = function (formData) {
+            Products.addProduct(formData);
+        };
+
+        factory.showDialog = function (index) {
+            var poz = {};
+                poz = index;
+                $mdDialog.show({
+                parent: angular.element(document.body),
+                targetEvent: index,
+                focusOnOpen: true,
+                templateUrl: 'administration/dashboard/templates/file-manager/file-manager.html',
+                controller: 'FileManagerController'
+            }).then(
+            function success (images) {
+                product.data.images.splice(product.data.images.length - 1,1);
+                _.forEach(images,function(eachImage){
+                    product.data.images.push(eachImage);
+                });
+            },errorCallback);
+        };
 
         factory.init = function (newMode) {
             products = {
@@ -91,6 +117,11 @@
                 data: {}
             };
             product = {
+                loaded: false,
+                fetching: true,
+                data: {}
+            };
+            addProduct = {
                 loaded: false,
                 fetching: true,
                 data: {}

@@ -14,7 +14,9 @@
         $scope.cb = {
             getProduct       : productsService.getProduct,
             imageFromManager : productsService.imageFromManager,
-            productImages    :fileManagerService.productImages
+            productImages    : fileManagerService.productImages,
+            addProduct       : productsService.addProduct,
+            showDialog       : productsService.showDialog
         };
 
         $scope.$watch('cb', function() {
@@ -46,6 +48,11 @@
             console.log(error);
         };
 
+        $scope.stocks = [
+            {"value" : 'IN_STOCK', "stockStatus" : "In stock"},
+            {"value" : 'OUT_OF_STOCK', "stockStatus" : "Out of stock"}
+        ];
+        
         // if () {
 
         // }
@@ -125,41 +132,15 @@
         ];
 
         $scope.usersModel = {};
-        var poz = {};
-
-        $scope.showDialog = function(index) {
-            poz = index;
-            $mdDialog.show({
-               parent: angular.element(document.body),
-               targetEvent: index,
-               // manually apply focus to the autocomplete control in the dialog
-               // (otherwise, the dialog forces focus to the OK button)
-               focusOnOpen: true,
-               templateUrl: 'administration/dashboard/templates/file-manager/file-manager.html',
-               controller: 'FileManagerController'
-           }).then(
-           function success (screenData) {
-                console.log('screenData',screenData);
-                $scope.personalDetails.splice($scope.personalDetails.length - 1,1);
-                _.forEach(screenData,function(each){
-                    $scope.personalDetails.push(each);
-                });
-           },
-           function failure () {
-               // canceled
-           });
-        };
-
-        $scope.personalDetails = [];
 
         $scope.addNew = function () {
-            $scope.personalDetails.push({
+            $scope.cb.getProduct().images.push({
                 'img':''
             });
         };
 
         $scope.remove = function(index){
-            $scope.personalDetails.splice(index,1);
+            $scope.cb.getProduct().images.splice(index,1);
         };
 
     });
