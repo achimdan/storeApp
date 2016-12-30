@@ -34,6 +34,11 @@
 
         };
 
+        factory.fetchCategories = function () {
+            var categoriesUrl = 'http://77.81.178.198:25001/onlineShop/categories';
+            return $http.get(categoriesUrl);
+        };
+
         return factory;
 
     });

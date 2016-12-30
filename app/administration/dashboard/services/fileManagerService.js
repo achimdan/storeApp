@@ -71,7 +71,7 @@
         
         var errorUpload = function (error) {
             console.log(error);
-        }
+        };
 
         factory.navigate = function () {
             // var data = _.pick(files.data,['path'],theFile.data['name']);
@@ -79,7 +79,7 @@
             var data = {
                 path: files.data.path,
                 fileName: theFile.data.name
-            }
+            };
             fileManager.navigateFolders(data).then(successNavigate,errorNavigate);
         };
 

@@ -13,11 +13,17 @@ angular.module('administration')
 		
 		$scope.state = $state;
 		
+		function buildToggler(componentId) {
+			return function () {
+				$mdSidenav(componentId).toggle();
+			};
+		}
+		
 		$scope.toggleLeft = buildToggler('left');
 		$scope.toggleRight = buildToggler('right');
 
 
-		// $scope.isActive = function (viewLocation) { 
+		// $scope.isActive = funccd..tion (viewLocation) { 
 		// 	// console.log('$location.path()',$location.path());
 		// 	// return viewLocation === $location.path();
 		// 	var navLocation = viewLocation.current.ncyBreadcrumbLink;
@@ -27,11 +33,6 @@ angular.module('administration')
 		// 	}
 		// };
 
-		function buildToggler(componentId) {
-			return function () {
-				$mdSidenav(componentId).toggle();
-			}
-		};
 	});
 
 })();

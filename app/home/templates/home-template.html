@@ -1,9 +1,35 @@
-<div class="container">
+<div class="container-center">
+	<!--<div class="col-md-12">
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-left">
+				<li>
+					dasdas
+				</li>
+				<li>
+					<ul>
+						<li class="dropdown" ng-repeat="button in categoryNav"> 
+							<a ui-sref="home.category({id: button.id})"
+							data-toggle="dropdown">
+								<span ng-bind="button.name"></span>
+								<b class="caret" ng-if="!button.subCategoryProductsCount.length == 0"></b>
+							</a>
+							<ul class="dropdown-menu" ng-if="!button.subCategoryProductsCount.length == 0">
+								<li ng-repeat="subButton in button.subCategoryProductsCount">
+									<a ui-sref="home.category({id: subButton.categoryId})">
+									{{subButton.categoryName}} ({{subButton.numberOfProducts}})
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>-->
 	<div class="col-md-12">
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
 				<li class="dropdown" ng-repeat="button in categoryNav"> 
-					<!--<a class="dropdown-toggle" -->
 					<a ui-sref="home.category({id: button.id})"
 					data-toggle="dropdown">
 						<span ng-bind="button.name"></span>

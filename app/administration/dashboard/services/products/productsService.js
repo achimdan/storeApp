@@ -16,12 +16,12 @@
                 fetching: true,
                 data: {}
             },
-            product = {
+            categories = {
                 loaded: false,
                 fetching: true,
                 data: {}
             },
-            addProduct = {
+            product = {
                 loaded: false,
                 fetching: true,
                 data: {}
@@ -40,6 +40,10 @@
         var successCallback = function (success) {
             products.data = success.data;
             product.data = success.data;
+        };
+        var successCategoriesCallback = function (success) {
+            categories.data = success.data.content;
+            // console.log('categories.data',success.data);
         };
 
         var errorCallback = function (error) {
@@ -92,6 +96,53 @@
             Products.addProduct(formData);
         };
 
+        factory.addNewImage = function () {
+            if (product.data.images !== undefined) {
+                product.data.images.push({
+                    'img':''
+                });
+            } else {
+                product.data.images = [];
+                product.data.images.push({
+                    'img':''
+                });
+            }
+        };
+
+        factory.removeImage = function (index) {
+            product.data.images.splice(index,1);
+        };
+
+        factory.fetchCategories = function () {
+            categories.fetching = true;
+            Products.fetchCategories().then(successCategoriesCallback,errorCallback);
+        };
+
+        factory.getCategories = function () {
+            return categories.data;
+        };
+
+        factory.categoriesArray = function (item) {
+            if (product.data.categories !== undefined) {
+                product.data.categories.push(item);
+            } else {
+                product.data.categories = [];
+                product.data.categories.push(item);
+            }
+            // product.data.categories.push(item);
+
+                    // categories.data.splice(item);
+
+            // _.forEach(product.data.categories,function(eachCategory){
+            //     if (eachCategory.id !== item.id) {
+            //     }
+            // });
+        };
+
+        factory.removeCategoryProduct = function (index) {
+            product.data.categories.splice(index,1);
+        };
+
         factory.showDialog = function (index) {
             var poz = {};
                 poz = index;
@@ -116,12 +167,12 @@
                 fetching: true,
                 data: {}
             };
-            product = {
+            categories = {
                 loaded: false,
                 fetching: true,
                 data: {}
             };
-            addProduct = {
+            product = {
                 loaded: false,
                 fetching: true,
                 data: {}

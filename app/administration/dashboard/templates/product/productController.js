@@ -11,42 +11,20 @@
     function($scope,$http,$timeout,$q,$log,$mdDialog,$state,productsService,fileManagerService) {
 
         productsService.fetchProduct($state.params.id);
+        productsService.fetchCategories();
         $scope.cb = {
-            getProduct       : productsService.getProduct,
-            imageFromManager : productsService.imageFromManager,
-            productImages    : fileManagerService.productImages,
-            addProduct       : productsService.addProduct,
-            showDialog       : productsService.showDialog
+            getProduct              : productsService.getProduct,
+            imageFromManager        : productsService.imageFromManager,
+            productImages           : fileManagerService.productImages,
+            addNewImage             : productsService.addNewImage,
+            removeImage             : productsService.removeImage,
+            addProduct              : productsService.addProduct,
+            showDialog              : productsService.showDialog,
+            getCategories           : productsService.getCategories,
+            categoriesArray         : productsService.categoriesArray,
+            removeCategoryProduct   : productsService.removeCategoryProduct
         };
 
-        $scope.$watch('cb', function() {
-            // do something here
-            // $scope.count += 1;
-            console.log('productImage',$scope.cb.productImage);
-        }, true);
-
-
-        var srcImage = {};
-
-        // $scope.$watch('files.length',function(newVal,oldVal){
-        //     console.log('$scope.files',$scope.files);
-        // });
-
-        // $scope.$on('BOOM!', function (events, args ){
-        //     // $scope.name = args;
-        //     srcImage = $scope.productImage;
-        //     console.log('args',$scope.productImage);
-        //     console.log('args',args);
-
-        // });
-
-        var successCallback = function (success) {
-            console.log(success);
-        };
-
-        var errorCallback = function (error) {
-            console.log(error);
-        };
 
         $scope.stocks = [
             {"value" : 'IN_STOCK', "stockStatus" : "In stock"},
@@ -98,50 +76,29 @@
         //       });
         // };
 
-        var get = function () {
-            var url = 'http://77.81.178.198:25001/onlineShop/categories';
-                $http({
-                  method: 'GET',
-                  url: url
-                }).then(function successCallback(response) {
-                    $scope.desserts = response.data;
-                    console.log($scope.desserts);
-                  }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                  });
-        };
+        // var get = function () {
+        //     var url = 'http://77.81.178.198:25001/onlineShop/categories';
+        //         $http({
+        //           method: 'GET',
+        //           url: url
+        //         }).then(function successCallback(response) {
+        //             $scope.desserts = response.data;
+        //             console.log($scope.desserts);
+        //           }, function errorCallback(response) {
+        //             // called asynchronously if an error occurs
+        //             // or server returns response with an error status.
+        //           });
+        // };
 
-        get();
-        $scope.getMatches = function (text) {
-            text = text.toLowerCase();
-            var ret = $scope.desserts.filter(function (d) {
-                return d.name.startsWith(text);
-            });
-            return ret;
-        };
+        // get();
+        // $scope.getMatches = function (text) {
+        //     text = text.toLowerCase();
+        //     var ret = $scope.desserts.content.filter(function (d) {
+        //         return d.name.startsWith(text);
+        //     });
+        //     return ret;
+        // };
 
-        $scope.options = [
-            {"val" : 0, "name" : "None"},
-            {"val" : 1, "name" : "One"},
-            {"val" : 2, "name" : "Two"},
-            {"val" : 3, "name" : "Three"},
-            {"val" : 4, "name" : "Four"},
-            {"val" : 5, "name" : "Five"},
-            {"val" : 6, "name" : "Six"}
-        ];
-
-        $scope.usersModel = {};
-
-        $scope.addNew = function () {
-            $scope.cb.getProduct().images.push({
-                'img':''
-            });
-        };
-
-        $scope.remove = function(index){
-            $scope.cb.getProduct().images.splice(index,1);
-        };
 
     });
 

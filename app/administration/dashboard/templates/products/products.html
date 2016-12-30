@@ -35,7 +35,7 @@
 				</thead>
 				<tbody md-body>
 					<tr md-row md-select="product" md-select-id="name" ng-repeat="product in cb.getProducts()">
-						<td md-cell><img src="assets/imgs/photo_24.png" alt=""></td>
+						<td md-cell><img ng-src="http://77.81.178.198:25001/onlineShop/{{product.images[0].src || assets/imgs/photo_24.png}}" alt=""></td>
 						<td md-cell>{{product.name}}</td>
 						<td md-cell>Tables</td>
 						<td md-cell>{{product.price}} RON</td>
