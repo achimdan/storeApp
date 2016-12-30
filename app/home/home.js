@@ -25,6 +25,11 @@
                 label: 'Home'
             }
         });
+        $stateProvider.state('home.product', {
+            url: '/product/:id',
+            templateUrl: 'home/templates/product.html',
+            controller: 'homeProductController'
+		});
 
     });
     

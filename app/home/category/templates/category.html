@@ -1,10 +1,26 @@
-<div class="container">
-    <ul class="col-md-12">
-        <li class="col-md-4" ng-repeat="product in products">
-            <div>
-                <img ng-src="http://77.81.178.198:25001/onlineShop/{{product.images[0].src}}" alt="">
+<div class="">
+    <div class="col-md-3 product-box" ng-repeat="product in products">
+        <div>
+            <a href ng-click="getProduct(product)">
+                <img ng-src="http://77.81.178.198:25001/onlineShop/{{product.image.src}}" alt="">
+            </a>
+        </div>
+        <div>
+            <a href ng-click="getProduct(product)">
                 {{product.name}}
-            </div>
-        </li>
-    </ul>
+            </a>
+        </div>
+        <div>
+            <a href ng-click="getProduct(product)">
+                {{product.description}}
+            </a>
+        </div>
+        <div>
+            {{product.price}}
+        </div>
+        <div>
+            {{product.stockStatus}}
+        </div>
+    </div>
 </div>
+

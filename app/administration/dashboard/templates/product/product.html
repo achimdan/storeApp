@@ -139,11 +139,13 @@
                                     placeholder="Out of Stock"
                                     ng-model="cb.getProduct().stockStatus"
                                     required/>-->
-                                <md-select placeholder="Stock" ng-model="formData.stockStatus" class="form-control">
+                                <md-select placeholder="Stock" 
+                                           ng-model="cb.getProduct().stockStatus" 
+                                           class="form-control">
                                     <md-option 
-                                        ng-value="stockStatus" 
-                                        ng-repeat="stock in stocks">
-                                        <span ng-bind="cb.getProduct().stockStatus"></span>
+                                        ng-repeat="stock in cb.stocks()"
+                                        ng-value="stock.value">
+                                        <span ng-bind="stock.stockStatus"></span>
                                     </md-option>
                                 </md-select>
                             </div>
@@ -154,8 +156,8 @@
                             </label>
                             <div class="col-sm-10">
                                 <md-radio-group ng-model="cb.getProduct().shipping">
-                                    <md-radio-button value="YES" class="md-primary">YES</md-radio-button>
-                                    <md-radio-button value="NO">No</md-radio-button>
+                                    <md-radio-button value="true" class="md-primary">YES</md-radio-button>
+                                    <md-radio-button value="false">No</md-radio-button>
                                 </md-radio-group>
                             </div>
                         </div>
@@ -358,7 +360,7 @@
 	                <md-content class="md-padding content-md">
                         <div>
                             <md-table-container class="table-main">
-                                <table md-table md-row-select multiple 
+                                <table md-table multiple 
                                     ng-model="selected"
                                     md-progress="promise" 
                                     class="">
@@ -369,7 +371,8 @@
                                         </tr>
                                     </thead>
                                     <tbody md-body>
-                                        <tr md-row md-select="category" md-select-id="name" 
+                                        <tr md-row md-select="category" 
+                                            md-select-id="name" 
                                             ng-repeat="personalDetail in cb.getProduct().images track by $index">
                                             <!--ng-repeat="personalDetail in personalDetails track by $index">-->
                                             <td md-cell>
@@ -386,6 +389,8 @@
                                                     </md-icon>
                                                 </md-button>
                                                 <img ng-click="showDialog($index)" ng-src="http://77.81.178.198:25001/onlineShop/{{personalDetail.src}}" alt="">
+                                                <!--<input type="number" ng-model="cb.getProduct().sort">-->
+                                                <input type="number" ng-model="personalDetail.sort">
                                                 <md-button 
                                                     ng-click="cb.removeImage($index)" 
                                                     class="md-icon-button button-right" 

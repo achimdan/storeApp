@@ -7,17 +7,17 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').factory('Products', function($http, $q, $state) {
+    angular.module('administration').factory('Products', function($http, $q, $state, Config) {
 
         var factory = {};
         
         factory.fetchProducts = function (query) {
-            var urlProducts = 'http://77.81.178.198:25001/onlineShop/products?page=' + (query.page - 1) + '&size=' + query.limit;
+            var urlProducts = Config +  'products?page=' + (query.page - 1) + '&size=' + query.limit;
             return $http.get(urlProducts);
         };
 
         factory.fetchProduct = function (id) {
-            var urlProduct = 'http://77.81.178.198:25001/onlineShop/products/' + id;
+            var urlProduct = Config + 'products/' + id;
             return $http.get(urlProduct);
         };
 
@@ -25,17 +25,17 @@
             var addProductUrl;
 
             if ($state.params.id) {
-                addProductUrl = 'http://77.81.178.198:25001/onlineShop/products/' + $state.params.id;
+                addProductUrl = Config + 'products/' + $state.params.id;
                 return $http.put(addProductUrl,formData);
             } else {
-                addProductUrl = 'http://77.81.178.198:25001/onlineShop/products';
+                addProductUrl = Config + 'products';
                 return $http.post(addProductUrl,formData);
             }
 
         };
 
         factory.fetchCategories = function () {
-            var categoriesUrl = 'http://77.81.178.198:25001/onlineShop/categories';
+            var categoriesUrl = Config + 'categories';
             return $http.get(categoriesUrl);
         };
 

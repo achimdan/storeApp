@@ -35,7 +35,11 @@
                 order: 'name',
                 limit: 10,
                 page: 1
-            };
+            },
+            stocks = [
+                {"value" : 'IN_STOCK', "stockStatus" : "In stock"},
+                {"value" : 'OUT_OF_STOCK', "stockStatus" : "Out of stock"}
+            ];
 
         var successCallback = function (success) {
             products.data = success.data;
@@ -48,6 +52,10 @@
 
         var errorCallback = function (error) {
             console.log(error);
+        };
+
+        factory.stocks = function () {
+            return stocks;
         };
         
         factory.getProducts = function () {

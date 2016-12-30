@@ -8,18 +8,18 @@
      * @author: Achim Dan
      */
     angular.module('administration')
-    .factory('fileManager', function($http, $q) {
+    .factory('fileManager', function($http, $q, Config) {
 
         var factory = {};
 
         factory.fetchFiles = function () {
-            var urlFiles = 'http://77.81.178.198:25001/onlineShop/fileManager/rootDirectory';            
+            var urlFiles = Config + 'fileManager/rootDirectory';            
             return $http.get(urlFiles);
 
         };
 
         factory.navigateFolders = function (data) {
-            var urlNavigate = 'http://77.81.178.198:25001/onlineShop/fileManager/navigateThroughFolder';
+            var urlNavigate = Config + 'fileManager/navigateThroughFolder';
 
             return $http({
                 url: urlNavigate,
@@ -30,7 +30,7 @@
         }; 
 
         factory.parent = function (path) {
-            var urlParent = 'http://77.81.178.198:25001/onlineShop/fileManager/parentDirectory';
+            var urlParent = Config + 'fileManager/parentDirectory';
 
             return $http({
                 url: urlParent,
@@ -40,7 +40,7 @@
         };
 
         factory.delete = function (path) {
-            var urlDelete = 'http://77.81.178.198:25001/onlineShop/fileManager/deleteDirectory';
+            var urlDelete = Config + 'fileManager/deleteDirectory';
 
             return $http({
                 url: urlDelete,
@@ -50,7 +50,7 @@
         };
 
         factory.upload = function (path) {
-            var urlUpload = 'http://77.81.178.198:25001/onlineShop/upload/files';
+            var urlUpload = Config + 'upload/files';
 
             return $http({
                 url: urlUpload,

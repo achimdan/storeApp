@@ -14,6 +14,7 @@
         productsService.fetchCategories();
         $scope.cb = {
             getProduct              : productsService.getProduct,
+            stocks                  : productsService.stocks,
             imageFromManager        : productsService.imageFromManager,
             productImages           : fileManagerService.productImages,
             addNewImage             : productsService.addNewImage,
@@ -24,12 +25,6 @@
             categoriesArray         : productsService.categoriesArray,
             removeCategoryProduct   : productsService.removeCategoryProduct
         };
-
-
-        $scope.stocks = [
-            {"value" : 'IN_STOCK', "stockStatus" : "In stock"},
-            {"value" : 'OUT_OF_STOCK', "stockStatus" : "Out of stock"}
-        ];
         
         // if () {
 
