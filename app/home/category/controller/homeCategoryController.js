@@ -16,7 +16,7 @@
         });
 
         $scope.getProduct = function (product) {
-            console.log(product);
+            // console.log(product);
             // $state.go('home.product',{id: product.id});
             // var data = product.name;
             var data = product.name.split(' ').join('-');

@@ -8,80 +8,63 @@
      * @author: Achim Dan
      */
 
-    angular.module('home').controller('homeProductController', function($scope, $http, $stateParams, $uibModal, Config) {
-
-        var getProductPage = function () {
-            var url = Config + 'products/' + $stateParams.id;
-            $scope.bigImage = [];
-            $http.get(url).then(function(success){
-                $scope.product = success.data;
-
-                _.forEach(success.data.images,function(eachImage){
-                    var splitImage = eachImage.src.split('thumbnail.');
-                    var joinImage = splitImage.join('');
-                    $scope.bigImage.push(joinImage);
-                    console.log($scope.bigImage);
-                });
-            });
-        };
-        getProductPage();
-
-        $scope.hover = function (images) {
-            $scope.hoveredImage = images;
-            console.log($scope.hoveredImage);
-        };
-        $scope.click = function (images) {
-            console.log($scope.hoveredImage);
-            var modalInstance = $uibModal.open({
-                // animation: $ctrl.animationsEnabled,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'home/product/templates/image-modal.html',
-                controller: 'imageModalController'
-                // resolve: {
-                //     items: function () {
-                //     return $ctrl.items;
-                //     }
-                // }
-            });
-
-            modalInstance.result.then(function (selectedItem) {
-                // $ctrl.selected = selectedItem;
-            }, function () {
-                // $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
+    angular.module('home').controller('homeProductController', function($scope, $http, $stateParams, $uibModal, Config, homeProductService) {
         
+        homeProductService.fetchProduct($stateParams);
+        $scope.cb = {
+            getProduct      : homeProductService.getProduct,
+            getThumbnails   : homeProductService.getThumbnails,
+            hoverThumbnails : homeProductService.hoverThumbnails,
+            getBigImagine   : homeProductService.getBigImagine,
+            openModalImages : homeProductService.openModalImages
+        };
 
-        // $scope.conf = {
-        //     thumbnails  :   true,   
-        //     inline      :   false,
-        //     bubbles     :   true,
-        //     imgBubbles  :   true,  
-        //     bgClose     :   true,
-        //     imgAnim     :   'fadeup'
+        // var getProductPage = function () {
+        //     var url = Config + 'products/' + $stateParams.id;
+        //     $scope.bigImage = [];
+        //     $http.get(url).then(function(success){
+        //         $scope.product = success.data;
+        //         _.forEach(success.data.images,function(eachImage){
+        //             var splitImage = eachImage.src.split('thumbnail.');
+        //             var joinImage = splitImage.join('');
+        //             $scope.bigImage.push(joinImage);
+        //             console.log($scope.bigImage);
+        //             $scope.hoveredImage = $scope.bigImage[0];
+        //             $scope.allImages = $scope.bigImage;
+        //         });
+        //     });
         // };
+        // getProductPage();
 
-        // $scope.images = [
-        //     {
-        //         title : 'This is amazing photo of nature',
-        //         alt : 'amazing nature photo',
-        //         thumbUrl : 'http://77.81.178.198:25001/onlineShop/files/thumbnail.browser-pic-5.jpg',
-        //         url : 'http://77.81.178.198:25001/onlineShop/files/browser-pic-5.jpg',
-        //     },
-        //     {
-        //         thumbUrl : 'http://77.81.178.198:25001/onlineShop/files/thumbnail.browser-pic-6.jpg',
-        //         url : 'http://77.81.178.198:25001/onlineShop/files/browser-pic-6.jpg'
-        //     },
-        //     {
-        //         thumbUrl : 'http://77.81.178.198:25001/onlineShop/files/thumbnail.browser-pic-3.jpg',
-        //         url : 'http://77.81.178.198:25001/onlineShop/files/browser-pic-3.jpg'
-        //         // thumbUrl : 'http://77.81.178.198:25001/onlineShop/files/multe poze/thumbnail.poster.jpg',
-        //         // url : 'http://77.81.178.198:25001/onlineShop/files/multe poze/poster.jpg'
-        //     }
-        // ];
+        // $scope.hover = function (images) {
+        //     $scope.hoveredImage = images;
+        //     console.log($scope.hoveredImage);
+        // };
+        // $scope.click = function (thumb,bigImage) {
+        //     var modalInstance = $uibModal.open({
+        //         // animation: $ctrl.animationsEnabled,
+        //         ariaLabelledBy: 'modal-title',
+        //         ariaDescribedBy: 'modal-body',
+        //         templateUrl: 'home/product/templates/image-modal.html',
+        //         controller: 'imageModalController',
+        //         size: 'lg',
+        //         resolve: {
+        //             items: function () {
+        //                 return {
+        //                     thumb: thumb,
+        //                     bigImage: bigImage
+        //                 };
+        //             }
+        //         }
+        //     });
 
-
+        //     modalInstance.result.then(function (selectedItem) {
+        //         // $ctrl.selected = selectedItem;
+        //     }, function () {
+        //         // $log.info('Modal dismissed at: ' + new Date());
+        //     });
+        // };
+        
     });
 
 })();

@@ -1,5 +1,23 @@
-<div class="container">
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+</div>
+<div class="modal-body clearfix" id="modal-body">
 
-    <h2>Sample ImageModal page!</h2>
+    <div class="col-md-2">
+        <div ng-repeat="thumb in image.bigImage">
+            <img style="width:100%" 
+                    ng-src="http://77.81.178.198:25001/onlineShop/{{thumb.src}}" 
+                    alt="" 
+                    ng-mouseover="hover(thumb)"
+                    ng-click="click(thumb,bigImage)">
+        </div>
+    </div>
+    <div class="col-md-10">
+        <img ng-src="http://77.81.178.198:25001/onlineShop/{{image.thumb}}" alt="">
+    </div>
 
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
 </div>
