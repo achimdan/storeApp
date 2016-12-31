@@ -1,5 +1,34 @@
 <div class="container">
 
-    <h2>Sample Product page!</h2>
-
+    <h2>{{product.name}}</h2>
+    <div class="col-md-7">
+        <ul>
+            <li>
+                <!--<img ng-src="http://77.81.178.198:25001/onlineShop/{{product.images[0].src}}" alt="">-->
+                <img ng-src="http://77.81.178.198:25001/onlineShop/{{hoveredImage}}" alt="">
+            </li>
+            <li ng-repeat="thumb in bigImage track by $index" class="col-md-2">
+                <div>
+                    <img style="width:100%" 
+                         ng-src="http://77.81.178.198:25001/onlineShop/{{thumb}}" 
+                         alt="" 
+                         ng-mouseover="hover(thumb)"
+                         ng-click="click(thumb)">
+                </div>
+            </li>
+            <!--<li>
+                <ng-image-gallery
+                    images="images"
+                    methods="methods"
+                    conf="conf"
+                    ng-mouseover="hover(images[1])"
+                    on-open="opened();"
+                    on-close="closed();">
+                </ng-image-gallery>
+            </li>-->
+        </ul>
+    </div>
+    <div class="col-md-5">
+        <h3>{{product.description}}</h3>
+    </div>
 </div>

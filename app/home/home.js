@@ -26,9 +26,12 @@
             }
         });
         $stateProvider.state('home.product', {
-            url: '/product/:id',
+            url: '/product/:id/?params',
             templateUrl: 'home/templates/product.html',
-            controller: 'homeProductController'
+            controller: 'homeProductController',
+            ncyBreadcrumb: {
+                label: 'Product'
+            }
 		});
 
     });
