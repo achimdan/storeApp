@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
 
-    angular.module('home').controller('homeProductController', function($scope, $http, $stateParams, $modal, Config) {
+    angular.module('home').controller('homeProductController', function($scope, $http, $stateParams, $uibModal, Config) {
 
         var getProductPage = function () {
             var url = Config + 'products/' + $stateParams.id;
@@ -32,7 +32,7 @@
         };
         $scope.click = function (images) {
             console.log($scope.hoveredImage);
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 // animation: $ctrl.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
