@@ -34,6 +34,23 @@
             }
 		});
 
+        //OPTIONS
+        $stateProvider.state('home.account', {
+            url: '/account',
+            templateUrl: 'home/options/account/account.html',
+            controller: 'accountController'            
+		});
+        $stateProvider.state('home.favorites', {
+            url: '/favorites',
+            templateUrl: 'home/options/favorites/favorites.html',
+            controller: 'favoritesController'            
+		});
+        $stateProvider.state('home.cart', {
+            url: '/cart',
+            templateUrl: 'home/options/cart/cart.html',
+            controller: 'cartController'            
+		});
+
     });
     
 

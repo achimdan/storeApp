@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
     angular.module('home').controller('homeController', 
-    function($scope, $http, $state, $rootScope, Config, homeService) {
+    function($scope, $http, $state, $rootScope, Config, homeService, $sce) {
 
         homeService.fetchNavigation();
         $scope.cb = {
@@ -27,6 +27,16 @@
                 $scope.isHome = true;
             }
         });
+
+        $scope.account = {
+            templateUrl: 'home/options/account/account.html',
+        };
+        $scope.favorites = {
+            templateUrl: 'home/options/favorites/favorites.html',
+        };
+        $scope.cart = {
+            templateUrl: 'home/options/cart/cart.html',
+        };
 
         $scope.myInterval = 3000;
         $scope.noWrapSlides = false;

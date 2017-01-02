@@ -26,6 +26,7 @@
         };
 
         factory.fetchNavigation = function () {
+            categories.fetching = true;
             Navigator.fetchNavigation().then(successCallback,errorCallback);
         };
 
