@@ -14,7 +14,7 @@
 					ng-class="{dropdownHome: isHome}">
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-left">
-							<li class="dropdown" ng-repeat="button in categoryNav"> 
+							<li class="dropdown" ng-repeat="button in cb.getNavigation()"> 
 								<!--<a data-toggle="dropdown">-->
 								<a>
 									<span ng-bind="button.name"></span>

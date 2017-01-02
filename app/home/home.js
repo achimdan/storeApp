@@ -15,7 +15,7 @@
         $stateProvider.state('home', {
             url: '/home',
             templateUrl: 'home/templates/home-template.html',
-            controller: 'homeCtrl'
+            controller: 'homeController'
         });
         $stateProvider.state('home.category', {
             url: '/category/:id',

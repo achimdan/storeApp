@@ -7,33 +7,26 @@
      *
      * @author: Achim Dan
      */
-    angular.module('home').controller('homeCtrl', 
-    function($scope, $http, $state, $rootScope, Config) {
+    angular.module('home').controller('homeController', 
+    function($scope, $http, $state, $rootScope, Config, homeService) {
+
+        homeService.fetchNavigation();
+        $scope.cb = {
+            getNavigation : homeService.getNavigation
+        };
 
         $scope.$state = $state;
         if ($state.current.name === 'home') {
             $scope.isHome = true;
         }
 
-        $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){ 
-            console.log($state);
+        $rootScope.$on('$stateChangeStart',function (event, toState, toParams, fromState, fromParams) { 
             if (toState.name !== 'home') {
                 $scope.isHome = false;
             } else {
                 $scope.isHome = true;
             }
         });
-
-        $scope.currentNavItem = 'page1';
-
-        var getNavigation = function () {
-            var urlNavigation = Config + 'home/navigation';
-            $http.get(urlNavigation).then(function(success){
-                console.log('NAV success',success.data);
-                $scope.categoryNav = success.data;
-            });
-        };
-        getNavigation();
 
         $scope.myInterval = 3000;
         $scope.noWrapSlides = false;
