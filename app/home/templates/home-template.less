@@ -1,6 +1,43 @@
+@homeBlue  : #0db9f0;
+
 .container-center {
 	margin: auto;
 	width: 1300px;
+}
+
+.products-button {
+	background: @homeBlue;
+    display: block;
+    padding: 10px;
+    color: white;
+	.text {
+		padding: 0 10px;
+	}
+	.fa-caret-down {
+		float: right;
+		margin-right: 10px;
+		padding: 2px;
+	}
+}
+
+.dropdown-first {
+    position: relative;
+    display: inline-block;
+	width: 200px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9;
+	width: 200px;
+}
+
+.dropdown-first:hover .dropdown-content {
+    display: block;
 }
 
 .navbar {
@@ -14,16 +51,29 @@
 }
 
 .navbar-nav {
-  float: left;
-  margin: 0;
+	float: left;
+  	margin: 0;
+	width: 100%;
 }
 
 .navbar-nav > li {
-  float: left;
+  float: none;
+  position: initial;
 }
 
 .navbar-nav > li > a {
-  padding: 15px;
+  padding: 10px 15px;
+}
+
+.dropdown-menu {
+	position: absolute;
+	left: 200px;
+	top: 0;
+	height: 100%;
+	width: 1070px;
+	&:hover {
+		cursor: initial;
+	}
 }
 
 .navbar-default {
@@ -45,6 +95,36 @@
 .navbar-brand {
   margin-left: -15px;
   transition: 0.25s all;
+}
+
+.dropdownHome {
+	display: block;
+	position: relative;
+}
+
+.navbar-collapse {
+	padding: 0;
+}
+
+.carousel {
+	.left {
+		.glyphicon-chevron-left {
+			font-size: 50px;
+			font: normal normal normal 14px/1 FontAwesome;
+			&:before {
+				content: "\f0d9";
+			}
+		}
+	}
+	.right {
+		.glyphicon-chevron-right {
+			font-size: 50px;
+			font: normal normal normal 14px/1 FontAwesome;
+			&:before {
+				content: "\f0da";
+			}
+		}
+	}
 }
 
 /*********************

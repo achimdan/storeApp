@@ -29,9 +29,13 @@
             };
 
         var successCallback = function (success) {
-            console.log(success.data);
-            categories.data = success.data;
             category.data = success.data;
+            console.log(success.data);
+        };
+
+        var successCallbackCategory = function (success) {
+            categories.data = success.data;
+            console.log(success.data);
         };
 
         var errorCallback = function (error) {
@@ -67,7 +71,7 @@
 
         factory.fetchCategories = function () {
             categories.fetching = true;
-            Categories.fetchCategories(query).then(successCallback,errorCallback);
+            Categories.fetchCategories(query).then(successCallbackCategory,errorCallback);
         };
 
         factory.fetchCategory = function (id) {
@@ -78,6 +82,10 @@
         factory.deleteCategory = function (id) {
             category.fetching = true;
             Categories.deleteCategory(id).then(successCallback,errorCallback);
+        };
+
+        factory.addCategory = function (formData) {
+            Categories.addCategory(formData);
         };
 
         factory.init = function (newMode) {

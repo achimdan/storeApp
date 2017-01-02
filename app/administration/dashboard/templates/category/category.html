@@ -1,5 +1,9 @@
 <div class="inner-box">
-    <form class="form-horizontal" name="categoryForm" ng-submit="sendPost(formData)" novalidate>
+    <form class="form-horizontal" 
+		  name="categoryForm" 
+		  ng-submit="cb.addCategory(cb.getCategory())"
+		  novalidate>
+
 	    <div class="clearfix">
 			<div class="col-md-12">
 				<div class="pull-right add-button-container">
@@ -65,10 +69,11 @@
                         		<md-autocomplete 
 	                        		md-selected-item="cb.getCategory().parentCategorySummary" 
 	                        		md-search-text="searchText" 
-	                        		md-items="item in cb.getCategories(searchText)" 
+	                        		md-items="item in cb.getCategories()" 
 	                        		md-item-text="item.name" 
 	                        		md-min-length="0" 
-	                        		placeholder="Type something">
+									md-no-cache="true"
+	                        		placeholder="Categories">
 								        <md-item-template> 
 									        <span md-highlight-text="searchText">
 									        	{{item.name}}
@@ -78,6 +83,24 @@
 								        	No matches found.
 							        	</md-not-found>
 							    </md-autocomplete>
+								<!--<md-autocomplete 
+	                        		md-search-text="searchText" 
+                                    md-selected-item-change="cb.categoriesArray(item)"
+	                        		md-items="item in cb.getCategories()" 
+	                        		md-item-text="item.name" 
+	                        		md-min-length="0" 
+                                    md-no-cache="true"
+	                        		placeholder="Categories"
+                                    >
+								        <md-item-template> 
+									        <span md-highlight-text="searchText">
+									        	{{item.name}}
+									        </span>
+								        </md-item-template>
+								        <md-not-found>
+								        	No matches found.
+							        	</md-not-found>
+							    </md-autocomplete>-->
                             </div>
                         </div>
 	                </md-content>
@@ -92,7 +115,7 @@
                                 		class="form-control" 
                                 		id="metaTitle" 
                                 		placeholder="Meta Tag Title" 
-                                		ng-model="formData.metaTitle"
+										ng-model="cb.getCategory().metaTitle"
                                 		required/>
                             </div>
                         </div>
@@ -102,7 +125,7 @@
                                 <textarea 
                                 		class="form-control" 
                                 		rows="5"
-                                		ng-model="formData.metaDescription"
+										ng-model="cb.getCategory().metaDescription"
                                 		id="metaDescription">
                         		</textarea>
                             </div>
@@ -113,7 +136,7 @@
                                 <textarea 
                                 		class="form-control" 
                                 		rows="5" 
-                                		ng-model="formData.metaKeywords"
+										ng-model="cb.getCategory().metaKeywords"
                                 		id="metaKeywords">
                         		</textarea>
                             </div>

@@ -12,7 +12,8 @@
         categoriesService.fetchCategory($state.params.id);
         $scope.cb = {
             getCategory   : categoriesService.getCategory,
-            getCategories : categoriesService.getCategories
+            getCategories : categoriesService.getCategories,
+            addCategory   : categoriesService.addCategory
         };
         
         
@@ -38,29 +39,29 @@
         //       });
         // };
 
-        var get = function () {
-            var url = 'http://77.81.178.198:25001/onlineShop/categories';
-                $http({
-                  method: 'GET',
-                  url: url
-                }).then(function successCallback(response) {
-                    $scope.desserts = response.data;
-                    console.log($scope.desserts);
-                  }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                  });
-        };
+        // var get = function () {
+        //     var url = 'http://77.81.178.198:25001/onlineShop/categories';
+        //         $http({
+        //           method: 'GET',
+        //           url: url
+        //         }).then(function successCallback(response) {
+        //             $scope.desserts = response.data;
+        //             console.log($scope.desserts);
+        //           }, function errorCallback(response) {
+        //             // called asynchronously if an error occurs
+        //             // or server returns response with an error status.
+        //           });
+        // };
 
-        get();
+        // get();
 
-        $scope.getMatches = function (text) {
-            text = text.toLowerCase();
-            var ret = $scope.desserts.filter(function (d) {
-                return d.name.startsWith(text);
-            });
-            return ret;
-        };
+        // $scope.getMatches = function (text) {
+        //     text = text.toLowerCase();
+        //     var ret = $scope.desserts.filter(function (d) {
+        //         return d.name.startsWith(text);
+        //     });
+        //     return ret;
+        // };
     });
 
 })();

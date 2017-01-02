@@ -8,23 +8,36 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('administration').service('Categories', function($http, $q) {
+    angular.module('administration').service('Categories', function($http, $q, $state, Config) {
 
         var factory = {};
         
         factory.fetchCategories = function (query) {
-            var urlCategories = 'http://77.81.178.198:25001/onlineShop/categories?page=' + (query.page - 1) + '&size=' + query.limit;
+            var urlCategories = Config + 'categories?page=' + (query.page - 1) + '&size=' + query.limit;
             return $http.get(urlCategories);
         };
 
         factory.fetchCategory = function (id) {
-            var urlCategory = 'http://77.81.178.198:25001/onlineShop/categories/' + id;
+            var urlCategory = Config + 'categories/' + id;
             return $http.get(urlCategory);
         };
 
         factory.deleteCategory = function (id) {
-            var urlDelCategory = 'http://77.81.178.198:25001/onlineShop/categories/' + id;
+            var urlDelCategory = Config + 'categories/' + id;
             return $http.delete(urlDelCategory);
+        };
+
+        factory.addCategory = function (formData) {
+            var addCategoryUrl;
+
+            if ($state.params.id) {
+                addCategoryUrl = Config + 'categories/' + $state.params.id;
+                return $http.put(addCategoryUrl,formData);
+            } else {
+                addCategoryUrl = Config + 'categories';
+                return $http.post(addCategoryUrl,formData);
+            }
+
         };
 
         return factory;

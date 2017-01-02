@@ -1,7 +1,7 @@
 <div class="inner-box">
     <form class="form-horizontal" 
           name="productForm" 
-          ng-submit="sendPost(formData)" 
+          ng-submit="cb.addProduct(cb.getProduct())" 
           novalidate>
 
 	    <div class="clearfix">
@@ -12,7 +12,6 @@
 			        		aria-label="Add product" 
 			        		type="submit" 
 			        		ng-class="{isDisabled: productForm.$invalid}"
-                            ng-click="cb.addProduct(cb.getProduct())"
 			        		ng-disabled="productForm.$invalid">
                             <!--ng-click="submit(cb.getProduct())"-->
 					    <md-tooltip md-direction="top">
