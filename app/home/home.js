@@ -51,7 +51,6 @@
             controller: 'cartController'            
 		});
 
-    });
-    
+    })
 
 })();

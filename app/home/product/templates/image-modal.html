@@ -4,9 +4,9 @@
 <div class="modal-body clearfix" id="modal-body">
 
     <div class="col-md-2">
-        <div ng-repeat="thumb in image.bigImage">
+        <div ng-repeat="thumb in image.bigImage track by $index">
             <img style="width:100%" 
-                    ng-src="http://77.81.178.198:25001/onlineShop/{{thumb.src}}" 
+                    ng-src="http://77.81.178.198:25001/onlineShop/{{thumb}}" 
                     alt="" 
                     ng-mouseover="hover(thumb)"
                     ng-click="click(thumb,bigImage)">

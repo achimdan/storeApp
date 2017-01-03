@@ -12,8 +12,12 @@
 
         var factory = {};
 
-        factory.fetchProduct = function () {
-            var url = Config + 'products/' + $stateParams.id;
+        // factory.fetchProduct = function () {
+        //     var url = Config + 'products/' + $stateParams.id;
+        //     return $http.get(url);
+        // };
+        factory.fetchProduct = function (id) {
+            var url = Config + 'products/' + id;
             return $http.get(url);
         };
 

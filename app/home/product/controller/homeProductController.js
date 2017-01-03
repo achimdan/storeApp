@@ -8,16 +8,61 @@
      * @author: Achim Dan
      */
 
-    angular.module('home').controller('homeProductController', function($scope, $http, $stateParams, $uibModal, Config, homeProductService) {
+    angular.module('home').controller('homeProductController', function($scope, $http, $stateParams, $uibModal, Config, homeProductService, homeProductModel) {
         
-        homeProductService.fetchProduct($stateParams);
+        // homeProductService.fetchProduct($stateParams);
         $scope.cb = {
-            getProduct      : homeProductService.getProduct,
-            getThumbnails   : homeProductService.getThumbnails,
-            hoverThumbnails : homeProductService.hoverThumbnails,
-            getBigImagine   : homeProductService.getBigImagine,
+            // getProduct      : homeProductService.getProduct,
+            // getThumbnails   : homeProductService.getThumbnails,
+            // hoverThumbnails : homeProductService.hoverThumbnails,
+            // getBigImagine   : homeProductService.getBigImagine,
             openModalImages : homeProductService.openModalImages
         };
+
+        // homeProductService.fetchProduct($stateParams);
+
+        var getTheProduct = function () {
+            $scope.bigImage = [];
+            homeProductModel.fetchProduct($stateParams.id).then(function(success){
+                $scope.product = success.data;
+                _.forEach(success.data.images,function(eachImage){
+                    $scope.bigImage.push(eachImage.srcBig);
+                    $scope.hoveredImage = $scope.bigImage[0];
+                    $scope.allImages = $scope.bigImage;
+                })
+                console.log(success.data);
+            });
+        };
+        getTheProduct();
+
+        $scope.hover = function (images) {
+            $scope.hoveredImage = images;
+        };
+        // $scope.click = function (thumb,bigImage) {
+        //     var modalInstance = $uibModal.open({
+        //         // animation: $ctrl.animationsEnabled,
+        //         ariaLabelledBy: 'modal-title',
+        //         ariaDescribedBy: 'modal-body',
+        //         templateUrl: 'home/product/templates/image-modal.html',
+        //         controller: 'imageModalController',
+        //         size: 'lg',
+        //         resolve: {
+        //             items: function () {
+        //                 return {
+        //                     thumb: thumb,
+        //                     bigImage: bigImage
+        //                 };
+        //             }
+        //         }
+        //     });
+
+        //     modalInstance.result.then(function (selectedItem) {
+        //         // $ctrl.selected = selectedItem;
+        //     }, function () {
+        //         // $log.info('Modal dismissed at: ' + new Date());
+        //     });
+        // };
+
 
         // var getProductPage = function () {
         //     var url = Config + 'products/' + $stateParams.id;

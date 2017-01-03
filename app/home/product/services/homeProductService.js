@@ -18,6 +18,9 @@
             },
             bigImage = {
                 data: {}
+            },
+            picture = {
+                data: {}
             };
 
         var successCallback = function (success) {
@@ -38,39 +41,47 @@
             return product.data;
         };
 
+        factory.getBigImagine = function () {
+
+            // if (thumb === undefined && product.data.images !== undefined) {
+            //     return bigImage.data = product.data.images[0].srcBig;
+            // } else {
+            //     return bigImage.data = thumb;
+            // }
+            if (product.data.images !== undefined && _.isEmpty(picture.data)) {
+                return bigImage.data = product.data.images[0].srcBig;
+            } else if (picture) {
+                return bigImage.data = picture.data;
+            }
+
+            // var splitImage,
+            //     joinImage;
+
+            // if (bigImage.data.split !== undefined) {
+            //     splitImage = bigImage.data.split('thumbnail.');
+            //     joinImage = splitImage.join('');
+            //     bigImage.data = joinImage;
+            //     return bigImage.data;
+            // } else if (product.data.images !== undefined) {
+            //     splitImage = product.data.images[0].src.split('thumbnail.');
+            //     joinImage = splitImage.join('');
+            //     return joinImage;
+            // }
+        };
+
         factory.getThumbnails = function () {
             var thumbnails = [];
             _.forEach(product.data.images,function(eachImage){
-                // var splitImage = eachImage.src.split('thumbnail.');
-                // var joinImage = splitImage.join('');
-                // $scope.hoveredImage = $scope.bigImage[0];
-                // $scope.allImages = $scope.bigImage;
-                thumbnails.push(eachImage.src);
+                thumbnails.push(eachImage);
             });
             return thumbnails;
         };
 
         factory.hoverThumbnails = function (image) {
-            bigImage.data = image;
+            picture.data = image.srcBig;
         };
 
-        factory.getBigImagine = function () {
-            var splitImage,
-                joinImage;
-
-            if (bigImage.data.split !== undefined) {
-                splitImage = bigImage.data.split('thumbnail.');
-                joinImage = splitImage.join('');
-                bigImage.data = joinImage;
-                return bigImage.data;
-            } else if (product.data.images !== undefined) {
-                splitImage = product.data.images[0].src.split('thumbnail.');
-                joinImage = splitImage.join('');
-                return joinImage;
-            }
-        };
-
-        factory.openModalImages = function (thumb) {
+        factory.openModalImages = function (thumb,bigImage) {
             var modalInstance = $uibModal.open({
                 // animation: $ctrl.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
@@ -82,7 +93,7 @@
                     items: function () {
                         return {
                             thumb: thumb,
-                            bigImage: product.data.images
+                            bigImage: bigImage
                         };
                     }
                 }
@@ -102,6 +113,9 @@
                 data: {}
             };
             bigImage = {
+                data: {}
+            };
+            picture = {
                 data: {}
             };
         };
