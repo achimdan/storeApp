@@ -8,19 +8,12 @@
      * @author: Achim Dan
      */
 
-    angular.module('home').controller('homeCategoryController', function($scope, $http, $state, $stateParams, Config) {
+    angular.module('home').controller('homeCategoryController', function($scope, $http, $state, $stateParams, Config, homeCategoryService) {
 
-        var getCategoryUrl = Config +  'products/categories/' + $stateParams.id;
-        $http.get(getCategoryUrl).then(function(success){
-            $scope.products = success.data.content;
-        });
-
-        $scope.getProduct = function (product) {
-            // console.log(product);
-            // $state.go('home.product',{id: product.id});
-            // var data = product.name;
-            var data = product.name.split(' ').join('-');
-            $state.go('home.product',{id: product.id,params: data});
+        homeCategoryService.fetchCategories($stateParams.id);
+        $scope.cb = {
+            getProducts : homeCategoryService.getProducts,
+            getProduct  : homeCategoryService.getProduct
         };
             
         //Range slider config
