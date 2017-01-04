@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
     angular.module('administration')
-    .factory('fileManager', function($http, $q, Config) {
+    .factory('fileManager', function($http, $q, Config, Upload) {
 
         var factory = {};
 
@@ -21,6 +21,18 @@
         factory.addFolder = function (newFolder) {
             var urlAddFolder = Config + 'fileManager/createDirectory'
             return $http.post(urlAddFolder,newFolder);
+        };
+
+        factory.uploadFiles = function (files) {
+            var urlUploadFiles = Config + 'upload/images';
+
+            var upload = Upload.http({
+                url: urlUploadFiles,
+                data: {
+                    files: files
+                }
+            });
+            return upload;
         };
 
         factory.navigateFolders = function (data) {

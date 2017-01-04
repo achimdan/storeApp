@@ -16,7 +16,7 @@
             loadFolder      : fileManagerService.loadFolder,
             parentDirectory : fileManagerService.parentDirectory,
             delete          : fileManagerService.delete,
-            upload          : fileManagerService.upload,
+            uploadFiles     : fileManagerService.uploadFiles,
             productImages   : fileManagerService.productImages,
             addToProduct    : fileManagerService.addToProduct,
             addFolder       : fileManagerService.addFolder

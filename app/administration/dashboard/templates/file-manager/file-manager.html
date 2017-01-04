@@ -9,7 +9,10 @@
                 Parent
             </md-tooltip>
         </md-button>
-        <md-button class="btn btn1" id="btn-cancel" ng-click="cb.uploadFiles()">
+        <md-button class="btn btn1"
+                   ngf-select="cb.uploadFiles($files)" 
+                   multiple 
+                   accept="image/*">
             <md-icon class="material-icons icon-upload">file_upload</md-icon>
             <md-tooltip md-direction="top">
                 Upload

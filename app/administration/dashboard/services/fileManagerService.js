@@ -89,6 +89,10 @@
             fileManager.addFolder(data).then(successCallback,errorCallback);
         };
 
+        factory.uploadFiles = function (files) {
+            fileManager.uploadFiles(files).then(successCallback,errorCallback);
+        };
+
         factory.navigate = function () {
             // var data = _.pick(files.data,['path'],theFile.data['name']);
             files.fetching = true;
