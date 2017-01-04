@@ -8,11 +8,13 @@
      * @author: Achim Dan
      */
     angular.module('home').controller('homeController', 
-    function($scope, $http, $state, $rootScope, Config, homeService, $sce) {
+    function($scope, $http, $state, $rootScope, Config, homeService, fileManagerService) {
 
         homeService.fetchNavigation();
+        fileManagerService.fetchImages();
         $scope.cb = {
-            getNavigation : homeService.getNavigation
+            getNavigation : homeService.getNavigation,
+            getImage      : fileManagerService.getImage
         };
 
         $scope.$state = $state;

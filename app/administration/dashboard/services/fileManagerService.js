@@ -30,6 +30,7 @@
                 checked: false,
                 data: {}
             },
+            selectedImage = [],
             formData = {
                 data: {}
             };
@@ -65,12 +66,15 @@
 
         var successUpload = function (success) {
             console.log(success);
-         
           	// refresh();
         };
         
         var errorUpload = function (error) {
             console.log(error);
+        };
+
+        var successImageCallback = function (success) {
+            selectedImage = success.data;
         };
 
         factory.navigate = function () {
@@ -153,6 +157,57 @@
             return images.data;
         };
 
+        //UNIVERSAL ADD IMAGE
+        factory.addNewImage = function () {
+            // images.data = [];
+            selectedImage.push({
+                'img':'',
+                'sort': ''
+            });
+            // if (images.data !== undefined) {
+            //     images.data.push({
+            //         'img':''
+            //     });
+            // } else {
+            //     images.data.push({
+            //         'img':''
+            //     });
+            // }
+        };
+
+        // factory.selectedImage = function () {
+        //     return selectedImage;
+        // };
+
+        factory.showDialog = function (index) {
+            var poz = {};
+                poz = index;
+                $mdDialog.show({
+                parent: angular.element(document.body),
+                targetEvent: index,
+                focusOnOpen: true,
+                templateUrl: 'administration/dashboard/templates/file-manager/file-manager.html',
+                controller: 'FileManagerController'
+            }).then(
+            function success (images) {
+                selectedImage.splice(selectedImage.length - 1,1);
+                _.forEach(images,function(eachImage){
+                    selectedImage.push(eachImage);
+                });
+            },errorCallback);
+        };
+
+        factory.addImage = function (images) {
+            fileManager.addImage(images).then(successImageCallback,errorCallback);
+        };
+
+        factory.fetchImages = function () {
+            fileManager.fetchImages().then(successImageCallback,errorCallback);
+        };
+
+        factory.getImage = function () {
+            return selectedImage;
+        };
         // $scope.delete = function(formData) {
         //     console.log($scope.formData.checked[0]);
         //     var files = [];
@@ -190,6 +245,7 @@
                 checked: false,
                 data: {}
             };
+            selectedImage = [];
             formData = {
                 data: {}
             };

@@ -58,6 +58,17 @@
             });
         };
 
+        //UNIVERSAL ADD IMAGE
+        factory.addImage = function (images) {
+            var addImageUrl = Config + 'home/banner/';
+            return $http.post(addImageUrl,images);
+        };
+
+        factory.fetchImages = function () {
+            var getImageUrl = Config + 'home/banner/';
+            return $http.get(getImageUrl);
+        };
+
         return factory;
 
     });

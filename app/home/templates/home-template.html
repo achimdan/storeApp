@@ -105,8 +105,8 @@
 	</div>
 	<div class="col-md-10" ng-if="isHome">
 		<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-			<div uib-slide ng-repeat="slide in slides track by $index" index="$index">
-				<img ng-src="{{slide.image}}" style="margin:auto;">
+			<div uib-slide ng-repeat="image in cb.getImage() track by $index" index="$index">
+				<img ng-src="http://77.81.178.198:25001/onlineShop/{{image.srcBig}}" style="margin:auto;">
 				<!--<div class="carousel-caption">
 				<h4>Slide {{slide.id}}</h4>
 				<p>{{slide.text}}</p>
