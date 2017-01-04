@@ -18,7 +18,8 @@
             delete          : fileManagerService.delete,
             upload          : fileManagerService.upload,
             productImages   : fileManagerService.productImages,
-            addToProduct    : fileManagerService.addToProduct
+            addToProduct    : fileManagerService.addToProduct,
+            addFolder       : fileManagerService.addFolder
         };
 
 

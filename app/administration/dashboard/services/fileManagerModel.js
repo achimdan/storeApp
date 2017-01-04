@@ -18,6 +18,11 @@
 
         };
 
+        factory.addFolder = function (newFolder) {
+            var urlAddFolder = Config + 'fileManager/createDirectory'
+            return $http.post(urlAddFolder,newFolder);
+        };
+
         factory.navigateFolders = function (data) {
             var urlNavigate = Config + 'fileManager/navigateThroughFolder';
 

@@ -15,13 +15,23 @@
                 Upload
             </md-tooltip>
         </md-button>
-        <md-button id="btn-parent" ng-click="cb.uploadFiles()" class="btn btn1">
-            <md-icon class="material-icons icon-upload">folder</md-icon>
-            <md-tooltip md-direction="top">
-                New Folder
-            </md-tooltip>
-        </md-button>
 
+        <md-menu md-position-mode="target-right target" md-offset="100 0" class="">
+            <md-button ng-click="$mdOpenMenu($event)">
+                <md-icon class="material-icons icon-upload">folder</md-icon>
+                <md-tooltip md-direction="top">
+                    New Folder
+                </md-tooltip>
+            </md-button>
+            <md-menu-content width="3">
+                <md-menu-item>
+                    <input type="text" ng-model="newFolder">
+                    <md-button id="btn-parent" ng-click="cb.addFolder(newFolder)" class="btn btn1">
+                        <md-icon class="material-icons icon-upload">create_new_folder</md-icon>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
 
         <!--<md-button class="md-icon-button" ng-click="cancel()">
             <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>

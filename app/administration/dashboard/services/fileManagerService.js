@@ -35,7 +35,7 @@
                 data: {}
             };
 
-        var successCallback = function (success) {
+        var successFetchCallback = function (success) {
             console.log('==============',success.data);
             files.fetching = false;
             files.loaded = true;
@@ -77,6 +77,18 @@
             selectedImage = success.data;
         };
 
+        var successCallback = function (response) {
+            console.log(response)
+        };
+
+        factory.addFolder = function (newFolder) {
+            var data = {
+                fileName: newFolder,
+                path: files.data.path
+            };
+            fileManager.addFolder(data).then(successCallback,errorCallback);
+        };
+
         factory.navigate = function () {
             // var data = _.pick(files.data,['path'],theFile.data['name']);
             files.fetching = true;
@@ -89,7 +101,7 @@
 
         factory.fetchFiles = function () {
             files.fetching = true;
-            fileManager.fetchFiles().then(successCallback, errorCallback);
+            fileManager.fetchFiles().then(successFetchCallback, errorCallback);
         };
 
         factory.getFiles = function () {
@@ -198,7 +210,7 @@
         };
 
         factory.addImage = function (images) {
-            fileManager.addImage(images).then(successImageCallback,errorCallback);
+            fileManager.addImage(images).then(successCallback,errorCallback);
         };
 
         factory.fetchImages = function () {
