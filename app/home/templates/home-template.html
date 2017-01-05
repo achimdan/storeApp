@@ -18,12 +18,13 @@
 					<span ng-init="accountPopoverOpened=false" 
 						  ng-mouseover="accountPopoverOpened=true" 
 						  ng-mouseleave="accountPopoverOpened=false">
-						<span uib-popover-template="account.templateUrl"
+						<!--<span uib-popover-template="account.templateUrl"-->
+						<span uib-popover-template="cb.options('account')"
 							  popover-trigger="none" 
 						      popover-placement="bottom-left" 
 							  popover-is-open="accountPopoverOpened">
 							<i class="fa fa-user" aria-hidden="true"></i>
-							<span>My Account</span>
+								<span>My Account</span>
 							<i class="fa fa-caret-down" aria-hidden="true"></i>
 						</span>
 					</span>
@@ -32,12 +33,13 @@
 					<span ng-init="favoritesPopoverOpened=false" 
 						  ng-mouseover="favoritesPopoverOpened=true" 
 						  ng-mouseleave="favoritesPopoverOpened=false">
-						<span uib-popover-template="favorites.templateUrl"
+						<!--<span uib-popover-template="favorites.templateUrl"-->
+						<span uib-popover-template="cb.options('favorites')"
 							  popover-trigger="none" 
 						      popover-placement="bottom-left" 
 							  popover-is-open="favoritesPopoverOpened">
 							<i class="fa fa-heart" aria-hidden="true"></i>
-							Favorites
+								Favorites
 							<i class="fa fa-caret-down" aria-hidden="true"></i>
 						</span>
 					</span>
@@ -46,12 +48,13 @@
 					<span ng-init="cartPopoverOpened=false" 
 						  ng-mouseover="cartPopoverOpened=true" 
 						  ng-mouseleave="cartPopoverOpened=false">
-						<span uib-popover-template="cart.templateUrl"
+						<!--<span uib-popover-template="cart.templateUrl"-->
+						<span uib-popover-template="cb.options('cart')"
 							  popover-trigger="none" 
 						      popover-placement="bottom-left" 
 							  popover-is-open="cartPopoverOpened">
 							<i class="fa fa-heart" aria-hidden="true"></i>
-							Cart
+								Cart
 							<i class="fa fa-caret-down" aria-hidden="true"></i>
 						</span>
 					</span>

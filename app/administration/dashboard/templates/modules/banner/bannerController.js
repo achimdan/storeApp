@@ -15,7 +15,8 @@
             selectedImage : fileManagerService.selectedImage,
             showDialog    : fileManagerService.showDialog,
             addImage      : fileManagerService.addImage,
-            getImage      : fileManagerService.getImage
+            getImage      : fileManagerService.getImage,
+            removeImage   : fileManagerService.removeImage
         };
 
     });

@@ -15,7 +15,8 @@
                 loaded: false,
                 fetching: true,
                 data: {}
-            };
+            },
+            templateUrl = '';
 
         var successCallback = function (success) {
             categories.data = success.data;
@@ -34,12 +35,23 @@
             return categories.data;
         };
 
+        factory.options = function (option) {
+            if (option === 'account') {
+                return templateUrl = 'home/options/account/account.html';
+            } else if (option === 'favorites') {
+               return templateUrl = 'home/options/favorites/favorites.html';
+            } else {
+                return templateUrl = 'home/options/cart/cart.html';
+            }
+        };
+
         factory.init = function () {
             categories = {
                 loaded: false,
                 fetching: true,
                 data: {}
             };
+            templateUrl = '';
         };
 
         return factory;

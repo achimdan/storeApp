@@ -29,7 +29,7 @@
                     $scope.bigImage.push(eachImage.srcBig);
                     $scope.hoveredImage = $scope.bigImage[0];
                     $scope.allImages = $scope.bigImage;
-                })
+                });
                 console.log(success.data);
             });
         };

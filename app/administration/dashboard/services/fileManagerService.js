@@ -78,7 +78,7 @@
         };
 
         var successCallback = function (response) {
-            console.log(response)
+            console.log(response);
         };
 
         factory.addFolder = function (newFolder) {
@@ -89,8 +89,21 @@
             fileManager.addFolder(data).then(successCallback,errorCallback);
         };
 
-        factory.uploadFiles = function (files) {
-            fileManager.uploadFiles(files).then(successCallback,errorCallback);
+        // factory.uploadFiles = function (files) {
+        //     var fdata = new FormData();
+        //     angular.forEach(files, function(value, index){
+        //         fdata.append("files", files[index]);
+        //     });
+        //     // var path = files.data.path;
+        //     fileManager.uploadFiles(files).then(successCallback,errorCallback);
+        // };
+        factory.uploadFiles = function (file) {
+            // var fdata = new FormData();
+            // angular.forEach(files, function(value, index){
+            //     fdata.append("files", files[index]);
+            // });
+            var path = files.data.path;
+            fileManager.uploadFiles(file,path).then(successCallback,errorCallback);
         };
 
         factory.navigate = function () {
@@ -224,6 +237,11 @@
         factory.getImage = function () {
             return selectedImage;
         };
+
+        factory.removeImage = function (index) {
+            selectedImage.splice(index,1);
+        };
+
         // $scope.delete = function(formData) {
         //     console.log($scope.formData.checked[0]);
         //     var files = [];

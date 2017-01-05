@@ -19,21 +19,34 @@
         };
 
         factory.addFolder = function (newFolder) {
-            var urlAddFolder = Config + 'fileManager/createDirectory'
+            var urlAddFolder = Config + 'fileManager/createDirectory';
             return $http.post(urlAddFolder,newFolder);
         };
 
-        factory.uploadFiles = function (files) {
+        factory.uploadFiles = function (files,path) {
             var urlUploadFiles = Config + 'upload/images';
 
-            var upload = Upload.http({
+            var upload = Upload.upload({
                 url: urlUploadFiles,
                 data: {
-                    files: files
+                    files: files,
+                    path: path
                 }
             });
             return upload;
         };
+        // factory.uploadFiles = function (files,path) {
+        //     var urlUploadFiles = Config + 'upload/images';
+
+        //     var upload = Upload.upload({
+        //         url: urlUploadFiles,
+        //         data: {
+        //             files: files,
+        //             path: path
+        //         }
+        //     });
+        //     return upload;
+        // };
 
         factory.navigateFolders = function (data) {
             var urlNavigate = Config + 'fileManager/navigateThroughFolder';

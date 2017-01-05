@@ -10,7 +10,8 @@
             </md-tooltip>
         </md-button>
         <md-button class="btn btn1"
-                   ngf-select="cb.uploadFiles($files)" 
+                   ngf-select="cb.uploadFiles(files)" 
+                   ng-model="files"
                    multiple 
                    accept="image/*">
             <md-icon class="material-icons icon-upload">file_upload</md-icon>

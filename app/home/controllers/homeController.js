@@ -14,7 +14,8 @@
         fileManagerService.fetchImages();
         $scope.cb = {
             getNavigation : homeService.getNavigation,
-            getImage      : fileManagerService.getImage
+            getImage      : fileManagerService.getImage,
+            options       : homeService.options
         };
 
         $scope.$state = $state;
@@ -28,7 +29,17 @@
             } else {
                 $scope.isHome = true;
             }
-        });        
+        });
+
+        // $scope.account = {
+        //     templateUrl: 'home/options/account/account.html',
+        // };
+        // $scope.favorites = {
+        //     templateUrl: 'home/options/favorites/favorites.html',
+        // };
+        // $scope.cart = {
+        //     templateUrl: 'home/options/cart/cart.html',
+        // }; 
 
     });
 
