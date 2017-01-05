@@ -12,6 +12,15 @@
     
     angular.module('administration').config(function($stateProvider) {
 
+        $stateProvider.state('login', {
+            url: '/login',
+            templateUrl: 'administration/login/templates/login.html',
+            controller: 'loginController'
+            // ncyBreadcrumb: {
+            //     label: 'Home'
+            // }
+        });
+        
         $stateProvider.state('dashboard', {
             url: '/administration',
             templateUrl: 'administration/dashboard/templates/dash/dashboard.html',
