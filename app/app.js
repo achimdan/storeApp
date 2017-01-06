@@ -10,10 +10,13 @@
      */
     angular.module('storeApp', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'restangular', 'angular-loading-bar', 'home', 'common', 'administration', 'ngMaterial', 'ncy-angular-breadcrumb', 'md.data.table', 'rzModule', 'ngFileUpload']);
     
-    angular.module('storeApp').config(function($stateProvider, $urlRouterProvider) {
+    angular.module('storeApp').config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         /* Add New States Above */
         $urlRouterProvider.otherwise('/administration');
+        // console.log('$httpProvider',$httpProvider);
+        
+        $httpProvider.defaults.withCredentials = true;
 
     });
     
@@ -29,6 +32,15 @@
                 this.$apply(fn);
             }
         };
+
+        // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        //     console.log(event, toState, toParams, fromState, fromParams);
+        //     // var isAuthenticationRequired =  toState.data && toState.data.requiresLogin && !PsAuthUserService.isLoggedIn;
+        //     // if(isAuthenticationRequired) {
+        //     //     event.preventDefault();
+        //     //     $state.go('auth.login');
+        //     // }
+        // });
         
     });
 
