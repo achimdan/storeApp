@@ -14,7 +14,7 @@
 
         $stateProvider.state('login', {
             url: '/login',
-            templateUrl: 'administration/login/templates/login.html',
+            templateUrl: 'administration/authentification/templates/login/login.html',
             controller: 'loginController'
             // ncyBreadcrumb: {
             //     label: 'Home'
@@ -25,6 +25,7 @@
             url: '/administration',
             templateUrl: 'administration/dashboard/templates/dash/dashboard.html',
             controller: 'dashCtrl',
+            authentificated: true,
             ncyBreadcrumb: {
                 label: 'Home'
             }
@@ -36,6 +37,7 @@
             url: '/categories',
             templateUrl: 'administration/dashboard/templates/categories/categories.html',
             controller: 'categoriesController',
+            authentificated: true,
             ncyBreadcrumb: {
                 label: 'Categories'
             }
@@ -45,6 +47,7 @@
             url: '/category/:id',
             templateUrl: 'administration/dashboard/templates/category/category.html',
             controller: 'categoryController',
+            authentificated: true,
             ncyBreadcrumb: {
                 label: 'Categories / Category'
                 // parent: 'categories'
@@ -56,6 +59,7 @@
             url: '/products',
             templateUrl: 'administration/dashboard/templates/products/products.html',
             controller: 'productsCtrl',
+            authentificated: true,
             ncyBreadcrumb: {
                 label: 'Products'
             },
@@ -67,6 +71,7 @@
             url: '/product/:id',
             templateUrl: 'administration/dashboard/templates/product/product.html',
             controller: 'productController',
+            authentificated: true,
             ncyBreadcrumb: {
                 label: 'Products / Product'
                 // parent: 'products'
@@ -76,22 +81,57 @@
         .state('dashboard.file-manager', {
             url: '/file-manager',
             templateUrl: 'administration/dashboard/templates/file-manager/file-manager.html',
-            controller: 'FileManagerController'
+            controller: 'FileManagerController',
+            authentificated: true
 		})
         
         //MODULES
         .state('dashboard.modules', {
             url: '/modules',
             templateUrl: 'administration/dashboard/templates/modules/modules.html',
-            controller: 'modulesController'
+            controller: 'modulesController',
+            authentificated: true
 		})
         //Banner
         .state('dashboard.banner', {
             url: '/banner',
             templateUrl: 'administration/dashboard/templates/modules/banner/banner.html',
-            controller: 'bannerController'
+            controller: 'bannerController',
+            authentificated: true
 		});
 
+    })
+
+    .run(function($rootScope, $state, $location, authService) {
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            console.log(event, toState, toParams, fromState, fromParams);
+
+            if (authService.isLoggedIn()) {
+                $location.path('/administration');
+            } else {
+                $location.path('/login');
+            }
+            // if (toState.authentificated) {
+            //     if (!loginService.getAuthStatus()) {
+            //         console.log(toState.authentificated);
+            //         $location.path('/administration');
+            //     }
+            // }
+
+            // if (toState.url === '/') {
+            //     if (loginService.getAuthStatus()) {
+            //         // $state.go('toState.url');
+            //         console.log(toState.url);
+            //         $location.path(toState.url);
+            //     }
+            // }
+            // var isAuthenticationRequired =  toState.data && toState.data.requiresLogin && !PsAuthUserService.isLoggedIn;
+            // if(isAuthenticationRequired) {
+            //     event.preventDefault();
+            //     $state.go('auth.login');
+            // }
+        });
+        
     });
     
 

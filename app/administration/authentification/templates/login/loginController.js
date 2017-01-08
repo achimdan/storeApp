@@ -8,10 +8,10 @@
      * @author: Achim Dan
      */
 
-    angular.module('administration').controller('loginController', function($scope,loginService) {
+    angular.module('administration').controller('loginController', function($scope,authService) {
 
         $scope.cb = {
-            login : loginService.login
+            login : authService.login
         };
 
     });

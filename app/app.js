@@ -8,19 +8,47 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('storeApp', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'restangular', 'angular-loading-bar', 'home', 'common', 'administration', 'ngMaterial', 'ncy-angular-breadcrumb', 'md.data.table', 'rzModule', 'ngFileUpload']);
+    angular.module('storeApp', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'restangular', 'angular-loading-bar', 'home', 'common', 'administration', 'ngMaterial', 'ncy-angular-breadcrumb', 'md.data.table', 'rzModule', 'ngFileUpload', 'ngCookies']);
     
     angular.module('storeApp').config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         /* Add New States Above */
-        $urlRouterProvider.otherwise('/administration');
+        $urlRouterProvider.otherwise('/login');
         // console.log('$httpProvider',$httpProvider);
         
         $httpProvider.defaults.withCredentials = true;
 
     });
     
-    angular.module('storeApp').run(function($rootScope) {
+    angular.module('storeApp').run(function($rootScope, $state, $location) {
+        // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        //     // console.log(event, toState, toParams, fromState, fromParams);
+
+        //     if (loginService.getAuthStatus()) {
+        //         $location.path('/administration');
+        //     } else {
+        //         $location.path('/login');
+        //     }
+        //     // if (toState.authentificated) {
+        //     //     if (!loginService.getAuthStatus()) {
+        //     //         console.log(toState.authentificated);
+        //     //         $location.path('/administration');
+        //     //     }
+        //     // }
+
+        //     // if (toState.url === '/') {
+        //     //     if (loginService.getAuthStatus()) {
+        //     //         // $state.go('toState.url');
+        //     //         console.log(toState.url);
+        //     //         $location.path(toState.url);
+        //     //     }
+        //     // }
+        //     // var isAuthenticationRequired =  toState.data && toState.data.requiresLogin && !PsAuthUserService.isLoggedIn;
+        //     // if(isAuthenticationRequired) {
+        //     //     event.preventDefault();
+        //     //     $state.go('auth.login');
+        //     // }
+        // });
 
         $rootScope.safeApply = function(fn) {
             var phase = $rootScope.$$phase;
@@ -33,14 +61,6 @@
             }
         };
 
-        // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        //     console.log(event, toState, toParams, fromState, fromParams);
-        //     // var isAuthenticationRequired =  toState.data && toState.data.requiresLogin && !PsAuthUserService.isLoggedIn;
-        //     // if(isAuthenticationRequired) {
-        //     //     event.preventDefault();
-        //     //     $state.go('auth.login');
-        //     // }
-        // });
         
     });
 

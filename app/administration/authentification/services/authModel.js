@@ -8,7 +8,7 @@
      * @author: Achim Dan
      */
 
-    angular.module('administration').factory('loginModel', function($http, $q, Config) {
+    angular.module('administration').factory('authModel', function($http, $q, Config) {
 
         var factory = {};
 
