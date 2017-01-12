@@ -88,7 +88,7 @@
                 ariaDescribedBy: 'modal-body',
                 templateUrl: 'home/product/templates/image-modal.html',
                 controller: 'imageModalController',
-                size: 'lg',
+                windowClass: 'modal-product',
                 resolve: {
                     items: function () {
                         return {

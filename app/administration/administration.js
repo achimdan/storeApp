@@ -104,13 +104,13 @@
 
     .run(function($rootScope, $state, $location, authService) {
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-            console.log(event, toState, toParams, fromState, fromParams);
+            // console.log(event, toState, toParams, fromState, fromParams);
 
-            if (authService.isLoggedIn()) {
-                $location.path('/administration');
-            } else {
-                $location.path('/login');
-            }
+            // if (authService.isLoggedIn()) {
+            //     $location.path('/administration');
+            // } else {
+            //     $location.path('/login');
+            // }
             // if (toState.authentificated) {
             //     if (!loginService.getAuthStatus()) {
             //         console.log(toState.authentificated);

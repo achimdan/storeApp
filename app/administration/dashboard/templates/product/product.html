@@ -375,32 +375,40 @@
                                             ng-repeat="personalDetail in cb.getProduct().images track by $index">
                                             <!--ng-repeat="personalDetail in personalDetails track by $index">-->
                                             <td md-cell>
-                                                <md-button 
-                                                    ng-if="!personalDetail.src"
-                                                    ng-click="cb.showDialog($index)" 
-                                                    class="md-icon-button button-left" 
-                                                    aria-label="Add image">
-                                                    <md-icon class="material-icons icon-store">
-                                                        add_a_photo
-                                                        <md-tooltip md-direction="right">
-                                                            Add a image
-                                                        </md-tooltip>
-                                                    </md-icon>
-                                                </md-button>
-                                                <img ng-click="showDialog($index)" ng-src="http://77.81.178.198:25001/onlineShop/{{personalDetail.src}}" alt="">
-                                                <!--<input type="number" ng-model="cb.getProduct().sort">-->
-                                                <input type="number" ng-model="personalDetail.sort">
-                                                <md-button 
-                                                    ng-click="cb.removeImage($index)" 
-                                                    class="md-icon-button button-right" 
-                                                    aria-label="Add product">
-                                                    <md-icon class="material-icons icon-store">
-                                                        indeterminate_check_box
-                                                        <md-tooltip md-direction="left">
-                                                            Remove {{personalDetail.name}}
-                                                        </md-tooltip>
-                                                    </md-icon>
-                                                </md-button>
+                                                <div class="box-wrap">
+                                                    <md-button 
+                                                        ng-if="!personalDetail.src"
+                                                        ng-click="cb.showDialog($index)" 
+                                                        class="md-icon-button button-left" 
+                                                        aria-label="Add image">
+                                                        <md-icon class="material-icons icon-store">
+                                                            add_a_photo
+                                                            <md-tooltip md-direction="right">
+                                                                Add a image
+                                                            </md-tooltip>
+                                                        </md-icon>
+                                                    </md-button>
+                                                    <div class="box-image">
+                                                        <img ng-click="showDialog($index)" 
+                                                             ng-src="http://77.81.178.198:25001/onlineShop/{{personalDetail.src}}" 
+                                                             alt="">
+                                                    </div>
+                                                    <!--<input type="number" ng-model="cb.getProduct().sort">-->
+                                                    <input type="number" 
+                                                        class="form-control input-sort"
+                                                        ng-model="personalDetail.sort">
+                                                    <md-button 
+                                                        ng-click="cb.removeImage($index)" 
+                                                        class="md-icon-button button-right" 
+                                                        aria-label="Add product">
+                                                        <md-icon class="material-icons icon-store">
+                                                            indeterminate_check_box
+                                                            <md-tooltip md-direction="left">
+                                                                Remove {{personalDetail.name}}
+                                                            </md-tooltip>
+                                                        </md-icon>
+                                                    </md-button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
