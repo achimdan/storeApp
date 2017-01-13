@@ -12,9 +12,10 @@
     .factory('authService', function($http, $q, $injector, $state, $cookies) {
 
         var Login = $injector.get('authModel'),
+            HttpErrors = $injector.get('HttpErrors'),
         
-        errorCallback = function (error) {
-            console.log(error);
+        errorCallback = function (errorResponse) {
+            HttpErrors.handleError(errorResponse);
         };
 
         return {

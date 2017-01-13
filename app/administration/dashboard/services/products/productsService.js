@@ -11,6 +11,7 @@
 
         var factory = {},
             Products = $injector.get('Products'),
+            HttpErrors = $injector.get('HttpErrors'),
             products = {
                 loaded: false,
                 fetching: true,
@@ -50,8 +51,12 @@
             // console.log('categories.data',success.data);
         };
 
+        var successMethod = function (successPost) {
+            console.log('successPost',successPost);
+        };
+
         var errorCallback = function (error) {
-            console.log(error);
+            HttpErrors.handleError(error);
         };
 
         factory.stocks = function () {
@@ -101,7 +106,7 @@
         };
 
         factory.addProduct = function (formData) {
-            Products.addProduct(formData);
+            Products.addProduct(formData).then(successMethod);
         };
 
         factory.addNewImage = function () {

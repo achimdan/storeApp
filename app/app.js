@@ -20,8 +20,10 @@
 
     });
     
-    angular.module('storeApp').run(function($rootScope, $state, $location) {
-        // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    angular.module('storeApp').run(function($rootScope, $state, $location, HttpErrors) {
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+
+
         //     // console.log(event, toState, toParams, fromState, fromParams);
 
         //     if (loginService.getAuthStatus()) {
@@ -48,7 +50,7 @@
         //     //     event.preventDefault();
         //     //     $state.go('auth.login');
         //     // }
-        // });
+        });
 
         $rootScope.safeApply = function(fn) {
             var phase = $rootScope.$$phase;
