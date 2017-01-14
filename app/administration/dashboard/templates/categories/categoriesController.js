@@ -16,14 +16,11 @@
             getCategories       : categoriesService.getCategories,
             getTotalElements    : categoriesService.getTotalElements,
             getTotalPages       : categoriesService.getTotalPages,
-            delCategory         : categoriesService.delCategory
+            delCategory         : categoriesService.delCategory,
+            editCategory        : categoriesService.editCategory
         };
         
         $scope.selected = [];
-
-        $scope.delete = function (selected) {
-          console.log(selected);
-        };
 
         $scope.query = {
             limit: 10,
@@ -32,10 +29,6 @@
 
         $scope.getPage = function () {
             categoriesService.pagination($scope.query);
-        };
-
-        $scope.edit = function  (category) {
-            $state.go('dashboard.category',{id: category.id});
         };
 
     });

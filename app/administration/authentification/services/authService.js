@@ -9,7 +9,7 @@
      */
 
     angular.module('administration')
-    .factory('authService', function($http, $q, $injector, $state, $cookies) {
+    .factory('authService', function($http, $q, $injector, $state, $cookies, Notification) {
 
         var Login = $injector.get('authModel'),
             HttpErrors = $injector.get('HttpErrors'),
@@ -19,23 +19,23 @@
         };
 
         return {
-            // authorize: function(accessLevel, role) {
-            //     var status = $cookies.get('auth');
-            //     console.log('status', status);
+            authorize: function(accessLevel, role) {
+                var status = $cookies.get('token');
+                console.log('status', status);
 
-            //     if (status) {
-            //         return true;
-            //     } else {
-            //         return false;
-            //     }
+                if (status) {
+                    return true;
+                } else {
+                    return false;
+                }
 
-            // // if(role === undefined)
-            // //     role = $rootScope.user.role;
-            // //     return accessLevel &amp; role;
-            // },
+            // if(role === undefined)
+            //     role = $rootScope.user.role;
+            //     return accessLevel &amp; role;
+            },
 
             isLoggedIn: function(user) {
-                var status = $cookies.get('auth');
+                var status = $cookies.get('token');
                 console.log('status', status);
                 
                 if (status) {
@@ -55,8 +55,11 @@
 
             login: function(credentials, success, error) {
                 Login.login(credentials).then(function(success){
-                    $cookies.put('auth', 'authentificated');
+                    // $cookies.put('auth', 'authentificated');
+                    $cookies.put('refreshToken', success.data.refreshToken);
+                    $cookies.put('token', success.data.token);
                     $state.go('dashboard');
+                    Notification.success({message: 'Success message goes here', delay: 2000});
                 },errorCallback);
             },
 

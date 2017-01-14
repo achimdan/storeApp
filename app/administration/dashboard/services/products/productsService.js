@@ -7,11 +7,12 @@
      *
      * @author: Achim Dan
      */
-    angular.module('administration').factory('productsService', function($http, $q, $injector, $mdDialog) {
+    angular.module('administration').factory('productsService', function($http, $q, $state, $injector, $mdDialog) {
 
         var factory = {},
             Products = $injector.get('Products'),
             HttpErrors = $injector.get('HttpErrors'),
+            Notification = $injector.get('Notification'),
             products = {
                 loaded: false,
                 fetching: true,
@@ -52,7 +53,7 @@
         };
 
         var successMethod = function (successPost) {
-            console.log('successPost',successPost);
+            Notification.success({message: 'Success message goes here', delay: 2000});
         };
 
         var errorCallback = function (error) {
@@ -69,6 +70,10 @@
 
         factory.getProduct = function () {
             return product.data;
+        };
+
+        factory.editProduct = function (product) {
+            $state.go('dashboard.product',{id: product.id});
         };
 
         factory.getTotalElements = function () {
@@ -106,7 +111,7 @@
         };
 
         factory.addProduct = function (formData) {
-            Products.addProduct(formData).then(successMethod);
+            Products.addProduct(formData).then(successMethod,errorCallback);
         };
 
         factory.addNewImage = function () {

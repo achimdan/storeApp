@@ -35,14 +35,17 @@
 				</thead>
 				<tbody md-body>
 					<tr md-row md-select="product" md-select-id="name" ng-repeat="product in cb.getProducts()">
-						<td md-cell><img ng-src="http://77.81.178.198:25001/onlineShop/{{product.image.src || assets/imgs/photo_24.png}}" alt=""></td>
+						<td md-cell>
+							<img ng-src="{{url + product.image.src}}" alt="">
+							<!--<img ng-src="assets/imgs/photo_24.png" alt="" ng-if="product.image.src">-->
+						</td>
 						<td md-cell>{{product.name}}</td>
 						<td md-cell>Tables</td>
 						<td md-cell>{{product.price}} RON</td>
 						<td md-cell>{{product.quantity}}</td>
 						<td md-cell><i class="material-icons checked">check_circle</i></td>
 						<td md-cell>
-							<md-button ng-click="edit(product)" class="md-icon-button" aria-label="Add product">
+							<md-button ng-click="cb.editProduct(product)" class="md-icon-button" aria-label="Add product">
 								<md-icon class="fa fa-pencil">
 									<md-tooltip md-direction="left">
 										Edit {{product.name}}

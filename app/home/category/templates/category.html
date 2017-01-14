@@ -1,8 +1,8 @@
 <div class="">
     <div class="col-md-3 product-box" ng-repeat="product in cb.getProducts()">
-        <div>
+        <div class="image-box">
             <a href ng-click="cb.getProduct(product)">
-                <img ng-src="http://77.81.178.198:25001/onlineShop/{{product.image.src}}" alt="">
+                <img class="image" ng-src="http://77.81.178.198:25001/onlineShop/{{product.image.src}}" alt="">
             </a>
         </div>
         <div>

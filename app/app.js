@@ -8,7 +8,7 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('storeApp', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'restangular', 'angular-loading-bar', 'home', 'common', 'administration', 'ngMaterial', 'ncy-angular-breadcrumb', 'md.data.table', 'rzModule', 'ngFileUpload', 'ngCookies']);
+    angular.module('storeApp', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'restangular', 'angular-loading-bar', 'home', 'common', 'administration', 'ngMaterial', 'ncy-angular-breadcrumb', 'md.data.table', 'rzModule', 'ngFileUpload', 'ngCookies', 'ui-notification']);
     
     angular.module('storeApp').config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 

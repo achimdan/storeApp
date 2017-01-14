@@ -3,13 +3,14 @@
         <h2>Image Manager</h2>
         <span flex></span>
         <input type="text" placeholder="search">
-        <md-button class="btn btn1" id="btn-cancel" ng-click="cb.parentDirectory()">
+        <!--<md-button class="btn btn1" id="btn-cancel" ng-click="cb.parentDirectory()">-->
+        <md-button id="btn-cancel" ng-click="cb.parentDirectory()">
             <md-icon class="material-icons icon-upload">arrow_upward</md-icon>
             <md-tooltip md-direction="top">
                 Parent
             </md-tooltip>
         </md-button>
-        <md-button class="btn btn1"
+        <md-button 
                    ngf-select="cb.uploadFiles(files)" 
                    ng-model="files"
                    multiple 

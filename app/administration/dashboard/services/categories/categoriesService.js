@@ -8,7 +8,7 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('administration').service('categoriesService', function($http, $q ,$injector) {
+    angular.module('administration').service('categoriesService', function($http, $q, $state, $injector) {
 
         var factory = {},
             Categories = $injector.get('Categories'),
@@ -50,8 +50,13 @@
             return category.data;
         };
 
+        factory.editCategory = function (category) {
+            $state.go('dashboard.category',{id: category.id});
+        };
+
         factory.delCategory = function (selected) {
-            Categories.deleteCategory({id: selected[0].id}).then(successCallback,errorCallback);
+
+            // Categories.deleteCategory({id: selected[0].id}).then(successCallback,errorCallback);
         };
 
         factory.getTotalElements = function () {

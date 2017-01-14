@@ -25,6 +25,9 @@
             categoriesArray         : productsService.categoriesArray,
             removeCategoryProduct   : productsService.removeCategoryProduct
         };
+
+        $scope.personalDetail = {};
+        $scope.personalDetail.sort = 0;
         
         // if () {
 

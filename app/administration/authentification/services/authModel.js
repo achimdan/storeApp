@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use strict';
 
     /**
@@ -8,13 +8,27 @@
      * @author: Achim Dan
      */
 
-    angular.module('administration').factory('authModel', function($http, $q, Config) {
+    angular.module('administration').factory('authModel', function ($http, $q, Config) {
 
         var factory = {};
 
         factory.login = function (credentials) {
-            var loginUrl = Config + 'administrator/login?username=' + credentials.username + '&password=' + credentials.password ;
-            return $http.post(loginUrl);
+
+            var loginUrl = Config + 'api/auth/login';
+
+            return $http.post(loginUrl, {
+                username: credentials.username,
+                password: credentials.password
+            }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }
+
+            );
+
         };
 
 
