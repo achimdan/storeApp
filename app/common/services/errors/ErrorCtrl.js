@@ -12,54 +12,55 @@
 		.controller('ErrorCtrl', ['$scope', '$uibModalInstance', 'errorData', function ($scope, $uibModalInstance, errorData) {
 
 			var title = 'Info';
-			var message = 'An error has occurred';
+			// var message = 'An error has occurred';
 			// var message;
 			var code = errorData.error;
+			var message = errorData.error.message;
 
 			// if (code === 'Unauthorized') {
 			//   $location.path('/login');
 			// }
 
-			switch (code.error) {
-				case 'Unauthorized':
-					message = errorData.error.message;
-					break;
+			// switch (code.error) {
+			// 	case 'Unauthorized':
+			// 		message = errorData.error.message;
+			// 		break;
 
-				case 'PartnerNameTaken':
-					message = 'The partner name is already in use';
-					break;
-				case 'PartnerNotFound':
-					message = 'Partner does not exist';
-					break;
-				case 'UsernameTaken':
-					message = 'Username is already taken';
-					break;
-				case 'UserNotFound':
-					message = 'User could not be found';
-					break;
-				case 'NoPermission':
-					message = 'No permission to perform this operation';
-					break;
-				case 'IncorrectPassword':
-					message = 'User did not supply the correct old password';
-					break;
-				case 'InvalidCredentials':
-					message = 'The username or password entered is incorrect';
-					break;
-				case 'InvalidState':
-					message = 'Invalid state';
-					break;
-				case 'ProductCodeTaken':
-					message = 'The product code is already taken';
-					break;
-				case 'BadRequest':
-					message = 'The server has received an invalid request';
-					title = 'Error';
-					break;
-				default:
-					title = 'Error';
-					break;
-			}
+			// 	case 'PartnerNameTaken':
+			// 		message = 'The partner name is already in use';
+			// 		break;
+			// 	case 'PartnerNotFound':
+			// 		message = 'Partner does not exist';
+			// 		break;
+			// 	case 'UsernameTaken':
+			// 		message = 'Username is already taken';
+			// 		break;
+			// 	case 'UserNotFound':
+			// 		message = 'User could not be found';
+			// 		break;
+			// 	case 'NoPermission':
+			// 		message = 'No permission to perform this operation';
+			// 		break;
+			// 	case 'IncorrectPassword':
+			// 		message = 'User did not supply the correct old password';
+			// 		break;
+			// 	case 'InvalidCredentials':
+			// 		message = 'The username or password entered is incorrect';
+			// 		break;
+			// 	case 'InvalidState':
+			// 		message = 'Invalid state';
+			// 		break;
+			// 	case 'ProductCodeTaken':
+			// 		message = 'The product code is already taken';
+			// 		break;
+			// 	case 'BadRequest':
+			// 		message = 'The server has received an invalid request';
+			// 		title = 'Error';
+			// 		break;
+			// 	default:
+			// 		title = 'Error';
+			// 		break;
+			// }
 
 			$scope.title = title;
 			$scope.message = message;

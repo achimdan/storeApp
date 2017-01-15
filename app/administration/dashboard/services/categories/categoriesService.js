@@ -8,7 +8,7 @@
      * @author: Tapas Jena
      * @copyright: Anitech Consulting Services Pvt Ltd.
      */
-    angular.module('administration').service('categoriesService', function($http, $q, $state, $injector) {
+    angular.module('administration').factory('categoriesService', function($http, $q, $state, $injector) {
 
         var factory = {},
             Categories = $injector.get('Categories'),

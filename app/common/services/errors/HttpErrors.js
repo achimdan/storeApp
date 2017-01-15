@@ -12,7 +12,7 @@
 	 *
 	 */
 	angular.module('storeApp')
-		.service('HttpErrors', ['ErrorDialogs', function (ErrorDialogs) {
+		.service('HttpErrors', ['ErrorDialogs', function (ErrorDialogs, authService) {
 
 			var errorFromRejection = function (rejection) {
 				return errorFromResponse(rejection);
@@ -29,7 +29,7 @@
 			var errorFromResponse = function (errorResponse) {
 				var errorCode = null;
 				//TODO deal with situations where we don't have data back from server
-				if (angular.isDefined(errorResponse.data) && angular.isDefined(errorResponse.data.error)) {
+				if (angular.isDefined(errorResponse.data) && angular.isDefined(errorResponse.data.status)) {
 					errorCode = errorResponse.data;
 				}
 				var recoverable = false;
@@ -37,19 +37,26 @@
 				if (errorCode !== null) {
 					//we have an error code back from the API
 					//so we know what to do
-					switch (errorCode.error) {
-						case 'Unauthorized':
-						case 'PartnerCodeTaken':
-						case 'PartnerNameTaken':
-						case 'UserNameTaken':
-						case 'UserNotFound':
-						case 'NoPermission':
-						case 'IncorrectPassword':
-						case 'InvalidCredentials':
-							recoverable = true;
-							break;
-						case 'BadRequest':
-							recoverable = false;
+					switch (errorCode.status) {
+						case 401:
+							switch (errorCode.internalCode) {
+								case 40101:
+									recoverable = true;
+									break;
+								case 40102:
+									recoverable = true;
+									// authService.refreshToken();
+									break;
+								case 40103:
+									recoverable = false;
+									break;
+								case 40104:
+									recoverable = true;
+								break;
+								default:
+									recoverable = false;
+									break;
+							}
 							break;
 						default:
 							recoverable = false;

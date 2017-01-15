@@ -16,21 +16,29 @@
         $urlRouterProvider.otherwise('/login');
         // console.log('$httpProvider',$httpProvider);
         
-        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.defaults.withCredentials = false;
+        $httpProvider.interceptors.push('authInterceptor');
 
     });
     
-    angular.module('storeApp').run(function($rootScope, $state, $location, HttpErrors) {
+    angular.module('storeApp').run(function($rootScope, $state, $location, HttpErrors,authService) {
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+
+            if (!authService.authorize()) {
+                $location.path('/login');
+            } else {
+                $location.path();
+            }
 
 
         //     // console.log(event, toState, toParams, fromState, fromParams);
 
-        //     if (loginService.getAuthStatus()) {
-        //         $location.path('/administration');
-        //     } else {
-        //         $location.path('/login');
-        //     }
+            // if (authService.authorize()) {
+            //     $location.path(toState.url);
+            //     // $state.go(toState.name);
+            // } else {
+            //     $location.path('/login');
+            // }
         //     // if (toState.authentificated) {
         //     //     if (!loginService.getAuthStatus()) {
         //     //         console.log(toState.authentificated);
@@ -38,13 +46,13 @@
         //     //     }
         //     // }
 
-        //     // if (toState.url === '/') {
-        //     //     if (loginService.getAuthStatus()) {
-        //     //         // $state.go('toState.url');
-        //     //         console.log(toState.url);
-        //     //         $location.path(toState.url);
-        //     //     }
-        //     // }
+            // if (toState.url === '/') {
+            //     if (authService.authorize()) {
+            //         // $state.go('toState.url');
+            //         console.log(toState.url);
+            //         $location.path(toState.url);
+            //     }
+            // }
         //     // var isAuthenticationRequired =  toState.data && toState.data.requiresLogin && !PsAuthUserService.isLoggedIn;
         //     // if(isAuthenticationRequired) {
         //     //     event.preventDefault();

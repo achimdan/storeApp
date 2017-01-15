@@ -31,14 +31,6 @@
 
         };
 
-
-        // factory.login = function (credentials) {
-        //     var loginUrl = Config + 'administrator/login?username=' + credentials.username + '&password=' + credentials.password ;
-        //     $http.post(loginUrl, credentials, {
-        //         withCredentials: true
-        //     });
-        // };
-
         return factory;
 
     });

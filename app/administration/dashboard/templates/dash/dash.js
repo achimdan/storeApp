@@ -9,9 +9,15 @@
  * @copyright: Anitech Consulting Services Pvt Ltd.
  */
 angular.module('administration')
-	.controller('dashCtrl', function ($scope, $timeout, $mdSidenav, $state, $location) {
+	.controller('dashCtrl', function ($scope, $timeout, $mdSidenav, $state, $location, $cookies) {
 		
 		$scope.state = $state;
+
+		$scope.logOut = function () {
+			$cookies.remove("refreshToken");
+			$cookies.remove("token");
+			$location.path('/login');
+		};
 		
 		function buildToggler(componentId) {
 			return function () {

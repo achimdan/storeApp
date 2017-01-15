@@ -9,7 +9,7 @@
      */
 
     angular.module('administration')
-    .factory('authService', function($http, $q, $injector, $state, $cookies, Notification) {
+    .factory('authService', function($http, $q, $injector, $state, $cookies, Notification, Config) {
 
         var Login = $injector.get('authModel'),
             HttpErrors = $injector.get('HttpErrors'),
@@ -21,8 +21,7 @@
         return {
             authorize: function(accessLevel, role) {
                 var status = $cookies.get('token');
-                console.log('status', status);
-
+                console.log(status);
                 if (status) {
                     return true;
                 } else {
@@ -32,6 +31,18 @@
             // if(role === undefined)
             //     role = $rootScope.user.role;
             //     return accessLevel &amp; role;
+            },
+
+            refreshToken : function (url) {
+                var url_token = Config + 'api/auth/token',
+                    options = {
+                        headers : {
+                            'Authorization' : $cookies.get('refreshToken')
+                        }
+                    };
+                $http.get(url_token, options).then(function(success){
+                    $cookies.put('token', success.data.token);
+                });
             },
 
             isLoggedIn: function(user) {
@@ -106,6 +117,18 @@
 
         // return factory;
 
+    })
+
+    
+    .factory('authInterceptor', function ($location, $q, $window, $cookies) {
+        var status = $cookies.get('token');
+        return {
+            request: function (config) {
+                config.headers = config.headers || {};
+                config.headers.Authorization = 'Bearer ' + status;
+                return config;
+            }
+        };
     });
 
 })();
