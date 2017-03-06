@@ -21,7 +21,8 @@
             },
             picture = {
                 data: {}
-            };
+            },
+            thumb;
 
         var successCallback = function (success) {
             product.data = success.data;
@@ -54,19 +55,19 @@
                 return bigImage.data = picture.data;
             }
 
-            // var splitImage,
-            //     joinImage;
+            var splitImage,
+                joinImage;
 
-            // if (bigImage.data.split !== undefined) {
-            //     splitImage = bigImage.data.split('thumbnail.');
-            //     joinImage = splitImage.join('');
-            //     bigImage.data = joinImage;
-            //     return bigImage.data;
-            // } else if (product.data.images !== undefined) {
-            //     splitImage = product.data.images[0].src.split('thumbnail.');
-            //     joinImage = splitImage.join('');
-            //     return joinImage;
-            // }
+            if (bigImage.data.split !== undefined) {
+                splitImage = bigImage.data.split('thumbnail.');
+                joinImage = splitImage.join('');
+                bigImage.data = joinImage;
+                return bigImage.data;
+            } else if (product.data.images !== undefined) {
+                splitImage = product.data.images[0].src.split('thumbnail.');
+                joinImage = splitImage.join('');
+                return joinImage;
+            }
         };
 
         factory.getThumbnails = function () {

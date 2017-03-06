@@ -26,9 +26,15 @@
             homeProductModel.fetchProduct($stateParams.id).then(function(success){
                 $scope.product = success.data;
                 _.forEach(success.data.images,function(eachImage){
-                    $scope.bigImage.push(eachImage.srcBig);
+                    var splitImage = eachImage.src.split('thumbnail.');
+                    var joinImage = splitImage.join('');
+                    $scope.bigImage.push(joinImage);
+                    console.log($scope.bigImage);
                     $scope.hoveredImage = $scope.bigImage[0];
                     $scope.allImages = $scope.bigImage;
+                    // $scope.bigImage.push(eachImage.srcBig);
+                    // $scope.hoveredImage = $scope.bigImage[0];
+                    // $scope.allImages = $scope.bigImage;
                 });
                 console.log(success.data);
             });

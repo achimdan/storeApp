@@ -114,7 +114,9 @@
 				interval="myInterval" 
 				no-wrap="noWrapSlides">
 				<div uib-slide ng-repeat="image in cb.getImage() track by $index" index="$index">
-					<img class="image-banner" ng-src="http://77.81.178.198:25001/onlineShop/{{image.srcBig}}" style="margin:auto;">
+					<img class="image-banner" 
+						 ng-src="http://77.81.178.198:25001/onlineShop/{{image.src}}" 
+						 style="margin:auto;">
 					<!--<div class="carousel-caption">
 					<h4>Slide {{slide.id}}</h4>
 					<p>{{slide.text}}</p>
